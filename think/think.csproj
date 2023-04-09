@@ -50,7 +50,14 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\db.mdf" />
+    <Content Include="App_Data\db_log.ldf">
+      <DependentUpon>db.mdf</DependentUpon>
+    </Content>
+    <Content Include="assets\home.png" />
     <Content Include="assets\think.png" />
+    <Content Include="bin\think.dll" />
+    <Content Include="bin\think.pdb" />
     <Content Include="css\global.css" />
     <Content Include="css\home.css" />
     <Content Include="Global.asax" />
@@ -66,8 +73,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\userRegister.ashx.cs">
+      <DependentUpon>userRegister.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\InternalSqlCrud.cs" />
+    <Compile Include="App_Code\JsonHelper.cs" />
+    <Compile Include="api\login.ashx.cs">
+      <DependentUpon>login.ashx</DependentUpon>
     </Compile>
     <Compile Include="pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -86,10 +101,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="api\userRegister.ashx" />
+    <Content Include="api\login.ashx" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
