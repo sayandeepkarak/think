@@ -1,0 +1,74 @@
+﻿#homeSection {
+  height: calc(100vh - 80px);
+  display: flex;
+  margin: 0 100px;
+}
+
+.homeChilds {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  flex: 1;
+}
+
+#homeRight {
+  align-items: center;
+}
+
+#homeImage {
+  height: 420px;
+  margin-bottom: 10vh;
+}
+
+.homeBigText {
+  font-weight: 500;
+  color: var(--text-big);
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+.homeSmallText {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+#homeLeft button {
+  margin-top: 20px;
+}
+
+.forms {
+  flex-direction: column;
+  width: 300px;
+  display: flex;
+  padding: 30px 32px;
+  justify-content: center;
+  box-shadow: 10px 10px 0px 0px #000, -10px -10px 0px 0px var(--border);
+  align-items: center;
+  gap: 15px;
+  display: none;
+}
+
+#signup {
+  width: 400px;
+}
+
+.forms p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.forms button {
+  margin-top: 10px;
+}
+
+.inputs {
+  outline: none;
+  border: none;
+  background-color: var(--light);
+  padding: 10px 18px;
+  width: 100%;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+}
