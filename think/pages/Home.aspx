@@ -28,8 +28,7 @@
           <form id="login" class="forms">
             <p>Login</p>
             <input type="email" name="loginEmail" id="loginEmail" class="inputs" placeholder="Email" />
-            <input type="password" name="loginPassword" id="loginPassword" class="inputs" placeholder="Password"
-              autocomplete="false" />
+            <input type="password" name="loginPassword" id="loginPassword" class="inputs" placeholder="Password" autocomplete="false" />
             <button type="submit" class="themeBtn">Login</button>
           </form>
           <form id="signup" class="forms">

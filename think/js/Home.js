@@ -34,11 +34,10 @@ openLoginBtn.onclick = () => {
   toggleForm(openLogin, loginForm, signupForm);
 };
 
-loginForm.addEventListener("submit", (e) => {
+loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(loginForm);
-  const formDataObj = Object.fromEntries(formData);
-  const { loginEmail, loginPassword } = { ...formDataObj };
+  const { loginEmail, loginPassword } = Object.fromEntries(formData);
   let isValid = true;
   isValid &= validateFields(
     loginEmail !== "",
@@ -49,12 +48,24 @@ loginForm.addEventListener("submit", (e) => {
     document.getElementById("loginPassword")
   );
   if (isValid) {
-    console.log(formDataObj);
+    try {
+      const res = await fetch("/api/login.ashx", {
+        method: "POST",
+        headers: {
+          ContentType: "application/json",
+        },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      const { status, message } = await res.json();
+      alert(message);
+    } catch (error) {
+      console.log(error);
+    }
     loginForm.reset();
   }
 });
 
-signupForm.addEventListener("submit", (e) => {
+signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(signupForm);
   const formDataObj = Object.fromEntries(formData);
@@ -78,7 +89,19 @@ signupForm.addEventListener("submit", (e) => {
     document.getElementById("confirmPass")
   );
   if (isValid) {
-    console.log(formDataObj);
-    signupForm.reset();
+    try {
+      const res = await fetch("/api/userRegister.ashx", {
+        method: "POST",
+        headers: {
+          ContentType: "application/json",
+        },
+        body: JSON.stringify({ fullname, email, mobile, password }),
+      });
+      const { status, message } = await res.json();
+      alert(message);
+      signupForm.reset();
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
