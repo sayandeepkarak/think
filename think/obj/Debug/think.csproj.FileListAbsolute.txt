@@ -2,3 +2,7 @@ I:\asp.net\think\think\bin\think.dll
 I:\asp.net\think\think\bin\think.pdb
 I:\asp.net\think\think\obj\Debug\think.dll
 I:\asp.net\think\think\obj\Debug\think.pdb
+I:\asp.net\New folder\think new\think\bin\think.dll
+I:\asp.net\New folder\think new\think\bin\think.pdb
+I:\asp.net\New folder\think new\think\obj\Debug\think.dll
+I:\asp.net\New folder\think new\think\obj\Debug\think.pdb
