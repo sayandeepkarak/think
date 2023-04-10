@@ -8,7 +8,7 @@ namespace think
 {
     public class InternalSqlCrud
     {
-        private string connectionString = "Data Source=.\\SQLEXPRESS;attachdbfilename=|DataDirectory|\\db.mdf;Integrated Security=true;User Instance=true";
+        private string connectionString = "Data Source=.\\SQLEXPRESS;attachdbfilename=|DataDirectory|\\db.mdf;Integrated Security=true;User Instance=true;MultipleActiveResultSets=true";
         private SqlConnection connection;
         //private SqlDataAdapter adapter;
         private SqlDataReader reader;

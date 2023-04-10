@@ -58,12 +58,19 @@
     <Content Include="assets\think.png" />
     <Content Include="bin\think.dll" />
     <Content Include="bin\think.pdb" />
+    <Content Include="css\adminPanel.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="css\global.css" />
     <Content Include="css\home.css" />
+    <Content Include="css\panel.css" />
     <Content Include="Global.asax" />
+    <Content Include="js\admin.js" />
+    <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\Home.js" />
+    <Content Include="pages\AdminDashboard.aspx" />
     <Content Include="pages\Home.aspx" />
-    <Content Include="template\HomeNav.ascx" />
+    <Content Include="pages\UserDashboard.aspx" />
+    <Content Include="template\BooksControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -84,6 +91,13 @@
     <Compile Include="api\login.ashx.cs">
       <DependentUpon>login.ashx</DependentUpon>
     </Compile>
+    <Compile Include="pages\AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\AdminDashboard.aspx.designer.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -91,13 +105,20 @@
     <Compile Include="pages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="template\HomeNav.ascx.cs">
-      <DependentUpon>HomeNav.ascx</DependentUpon>
+    <Compile Include="pages\UserDashboard.aspx.cs">
+      <DependentUpon>UserDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="template\HomeNav.ascx.designer.cs">
-      <DependentUpon>HomeNav.ascx</DependentUpon>
+    <Compile Include="pages\UserDashboard.aspx.designer.cs">
+      <DependentUpon>UserDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="template\BooksControl.ascx.cs">
+      <DependentUpon>BooksControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="template\BooksControl.ascx.designer.cs">
+      <DependentUpon>BooksControl.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

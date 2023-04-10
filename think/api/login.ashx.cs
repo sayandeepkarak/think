@@ -20,6 +20,8 @@ namespace think.api
         {
             if (context.Request.HttpMethod == "POST") {
                 string query, status, message, json;
+                Dictionary<string, string> resData = new Dictionary<string, string>();
+
                 JsonHelper jsonConverter = new JsonHelper();
                 RequestBody data = jsonConverter.parseWithStream<RequestBody>(context.Request.InputStream);
                 InternalSqlCrud crud = new InternalSqlCrud();
@@ -28,21 +30,36 @@ namespace think.api
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    HttpCookie cookie = new HttpCookie("userId",dataReader["id"].ToString());
-                    cookie.Expires = DateTime.Now.AddMonths(1);
+                    string userType = dataReader["userType"].ToString();
+                    
+                    HttpCookie cookie1 = new HttpCookie("userId", dataReader["id"].ToString());
+                    HttpCookie cookie2 = new HttpCookie("userType", userType);
+                    cookie1.Expires = DateTime.Now.AddMonths(1);
+                    cookie2.Expires = DateTime.Now.AddMonths(1);
+                    context.Response.Cookies.Add(cookie1);
+                    context.Response.Cookies.Add(cookie2);
+                    
                     status = "200";
-                    message = "Successfully loggedin";
-                    context.Response.Cookies.Add(cookie);
+                    message = "Success";
+
+                    if (userType == "admin")
+                    {
+                        resData.Add("userType", "admin");
+                    }
+                    else
+                    {
+                        resData.Add("userType", "user");
+                    }
                 }
                 else {
                     status = "404";
                     message = "Wrong credentials";
                 }
-                json = jsonConverter.stringWithResponse(status,message);
+                json = jsonConverter.stringWithResponse(resData);
                 context.Response.StatusCode = Convert.ToInt16(status);
                 context.Response.ContentType = "application/json";
+                context.Response.StatusDescription = message;
                 context.Response.Write(json);
-                context.Response.End();
             }
         }
 

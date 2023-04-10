@@ -1,0 +1,49 @@
+.panelBody {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.panelSidebar {
+  background-color: var(--theme);
+  height: 100%;
+  min-width: 320px;
+  padding: 60px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-tabs {
+  color: var(--text) !important;
+  height: 50px !important;
+}
+
+.side-tabs.active {
+  color: var(--theme) !important;
+  background-color: #ffffff !important;
+}
+
+.panelsTabsArea {
+  height: 60px;
+  background-color: var(--border);
+  width: 40%;
+  display: flex;
+}
+
+.panelTabsWrapper {
+  flex: 1;
+}
+
+.panelTabsWrapper button {
+  color: var(--theme);
+  flex: 1;
+  border: none !important;
+}
+
+.inputs {
+  width: auto;
+}
+
+.forms {
+  width: 100%;
+}

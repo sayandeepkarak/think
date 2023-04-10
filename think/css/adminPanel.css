@@ -1,0 +1,34 @@
+.tableWrapper {
+  margin: 0px 80px 0px 20px;
+}
+
+table {
+  background-color: #ffffff;
+  border-color: #ffffff !important;
+  color: var(--theme) !important;
+}
+
+th,
+td {
+  padding: 0.8rem 1.5rem !important;
+  vertical-align: middle;
+}
+
+.panelDataMiddleBlock {
+  margin: 30px 80px 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panelDataMiddleBlock p,
+.formWrapper p {
+  font-size: 1.2rem;
+}
+
+.formWrapper {
+  margin: 45px 80px 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

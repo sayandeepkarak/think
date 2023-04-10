@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
 }
 
 html {
@@ -20,8 +20,17 @@ html {
   --error-border: #e33169;
 }
 
+button {
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+p {
+  margin: 0 !important;
+}
+
 header {
-  height: 80px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,23 +43,53 @@ header img {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: default;
 }
 
 .themeBtn {
-  height: 50px;
+  height: 45px;
   padding: 0 24px;
   background-color: var(--theme);
   border: none;
-  outline: none;
   cursor: pointer;
   color: var(--text);
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.5px;
   transition: background-color 0.2s ease-in;
 }
 
 .themeBtn:hover {
   background-color: var(--text-big);
+}
+
+.forms {
+  flex-direction: column;
+  width: 300px;
+  display: flex;
+  padding: 30px 32px;
+  justify-content: center;
+  box-shadow: 10px 10px 0px 0px var(--theme), -10px -10px 0px 0px var(--border);
+  align-items: center;
+  gap: 15px;
+}
+
+.forms p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.forms button {
+  margin-top: 10px;
+}
+
+.inputs {
+  outline: none;
+  border: none;
+  background-color: var(--light);
+  padding: 10px 18px;
+  width: 100%;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
 }
