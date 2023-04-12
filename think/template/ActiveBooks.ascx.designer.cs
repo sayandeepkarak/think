@@ -10,159 +10,123 @@
 namespace think.template {
     
     
-    public partial class BooksControl {
+    public partial class ActiveBooks {
         
         /// <summary>
-        /// allBookPanel control.
+        /// allActiveBooksPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel allBookPanel;
+        protected global::System.Web.UI.UpdatePanel allActiveBooksPanel;
         
         /// <summary>
-        /// searchId control.
+        /// issueBookNames control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList searchId;
+        protected global::System.Web.UI.WebControls.DropDownList issueBookNames;
         
         /// <summary>
-        /// allBooks control.
+        /// allActiveBooks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView allBooks;
+        protected global::System.Web.UI.WebControls.GridView allActiveBooks;
         
         /// <summary>
-        /// addBookPanel control.
+        /// issueBookPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel addBookPanel;
+        protected global::System.Web.UI.UpdatePanel issueBookPanel;
         
         /// <summary>
-        /// bookName control.
+        /// bookNames control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bookName;
+        protected global::System.Web.UI.WebControls.DropDownList bookNames;
         
         /// <summary>
-        /// author control.
+        /// studentMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox author;
+        protected global::System.Web.UI.WebControls.DropDownList studentMobile;
         
         /// <summary>
-        /// bookPrice control.
+        /// issuedate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bookPrice;
+        protected global::System.Web.UI.WebControls.TextBox issuedate;
         
         /// <summary>
-        /// bookQuantity control.
+        /// returndate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bookQuantity;
+        protected global::System.Web.UI.WebControls.TextBox returndate;
         
         /// <summary>
-        /// addBook control.
+        /// issueBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addBook;
+        protected global::System.Web.UI.WebControls.Button issueBook;
         
         /// <summary>
-        /// updateBookPanel control.
+        /// txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updateBookPanel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txt;
         
         /// <summary>
-        /// updateId control.
+        /// returnBookPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList updateId;
+        protected global::System.Web.UI.UpdatePanel returnBookPanel;
         
         /// <summary>
-        /// findBook control.
+        /// issueId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button findBook;
+        protected global::System.Web.UI.WebControls.DropDownList issueId;
         
         /// <summary>
-        /// updBookName control.
+        /// fetchIssueBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox updBookName;
-        
-        /// <summary>
-        /// updAuthor control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox updAuthor;
-        
-        /// <summary>
-        /// updBookPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox updBookPrice;
-        
-        /// <summary>
-        /// updBookQuantity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox updBookQuantity;
-        
-        /// <summary>
-        /// updateBook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateBook;
+        protected global::System.Web.UI.WebControls.Button fetchIssueBook;
     }
 }

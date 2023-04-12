@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
 namespace think
@@ -10,7 +12,7 @@ namespace think
     {
         private string connectionString = "Data Source=.\\SQLEXPRESS;attachdbfilename=|DataDirectory|\\db.mdf;Integrated Security=true;User Instance=true;MultipleActiveResultSets=true";
         private SqlConnection connection;
-        //private SqlDataAdapter adapter;
+        private SqlDataAdapter adapter;
         private SqlDataReader reader;
         private SqlCommand command;
 
@@ -50,5 +52,16 @@ namespace think
             return this.reader;
         }
 
+        public void fillGrid(string query,GridView view) {
+            try {
+                this.adapter = new SqlDataAdapter(query, this.connection);
+                DataSet data = new DataSet();
+                this.adapter.Fill(data);
+                DataView dataObj = new DataView(data.Tables[0]);
+                view.DataSource = dataObj;
+                view.DataBind();
+            }
+            catch (SqlException) { }
+        }
     }
 }

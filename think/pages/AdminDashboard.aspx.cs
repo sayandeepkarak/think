@@ -17,15 +17,21 @@ namespace think.pages
             Response.Redirect("/");
         }
 
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            clearCookie();
+            Response.Redirect("/");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                if (Request.Cookies["userId"] != null && Request.Cookies["userType"] !=null && Request.Cookies["userType"].Value == "admin")
+                if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "admin")
                 {
                     string userId = Request.Cookies["userId"].Value;
                     InternalSqlCrud crud = new InternalSqlCrud();
-                    SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId+" AND userType='admin'");
+                    SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
                     if (data.HasRows)
                     {
                         data.Read();

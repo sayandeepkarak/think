@@ -10,11 +10,12 @@ namespace think.pages
 {
     public partial class UserDashboard : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                if (Request.Cookies["userId"] != null || Request.Cookies["userType"].Value == "user")
+                if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "user")
                 {
                     string userId = Request.Cookies["userId"].Value;
                     InternalSqlCrud crud = new InternalSqlCrud();

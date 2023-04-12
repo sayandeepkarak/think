@@ -104,7 +104,7 @@ signupForm.addEventListener("submit", async (e) => {
       });
       if (res.ok) {
         const { status, message } = await res.json();
-        alert(message);
+        window.location.href = "/UserPanel";
       } else if (res.status == 409) {
         alert(res.statusText);
       }

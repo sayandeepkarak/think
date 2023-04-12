@@ -13,6 +13,7 @@
     <RootNamespace>think</RootNamespace>
     <AssemblyName>think</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,6 +71,7 @@
     <Content Include="pages\AdminDashboard.aspx" />
     <Content Include="pages\Home.aspx" />
     <Content Include="pages\UserDashboard.aspx" />
+    <Content Include="template\ActiveBooks.ascx" />
     <Content Include="template\BooksControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -113,6 +115,13 @@
       <DependentUpon>UserDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="template\ActiveBooks.ascx.cs">
+      <DependentUpon>ActiveBooks.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="template\ActiveBooks.ascx.designer.cs">
+      <DependentUpon>ActiveBooks.ascx</DependentUpon>
+    </Compile>
     <Compile Include="template\BooksControl.ascx.cs">
       <DependentUpon>BooksControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -120,6 +129,7 @@
     <Compile Include="template\BooksControl.ascx.designer.cs">
       <DependentUpon>BooksControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
@@ -137,7 +147,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55074</DevelopmentServerPort>
+          <DevelopmentServerPort>64851</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

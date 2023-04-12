@@ -6,7 +6,7 @@
 .panelSidebar {
   background-color: var(--theme);
   height: 100%;
-  min-width: 320px;
+  min-width: 250px;
   padding: 60px 0px;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,10 @@
   display: flex;
 }
 
+.tabContent {
+  padding: 24px 88px 24px 40px !important;
+}
+
 .panelTabsWrapper {
   flex: 1;
 }
@@ -46,4 +50,12 @@
 
 .forms {
   width: 100%;
+}
+
+.findBookBlock {
+  margin-bottom: 20px;
+}
+
+.themeBtn.ml {
+  margin-left: 10px;
 }

@@ -20,6 +20,10 @@ html {
   --error-border: #e33169;
 }
 
+:root::-webkit-scrollbar {
+  display: none;
+}
+
 button {
   border-radius: 0 !important;
   outline: none !important;
@@ -92,4 +96,8 @@ header img {
   width: 100%;
   font-size: 0.9rem;
   border: 1px solid var(--border);
+}
+
+.overflow-auto::-webkit-scrollbar {
+  display: none;
 }
