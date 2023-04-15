@@ -22,10 +22,7 @@ namespace think
             return data;
         }
 
-        public string stringWithResponse(string status,string data) {
-            Dictionary<string,string> networkResponse = new Dictionary<string, string>();
-            networkResponse.Add("status",status);
-            networkResponse.Add("message",data);
+        public string stringWithResponse(Dictionary<string,string> networkResponse) {
             string json = serializer.Serialize(networkResponse);
             return json;
         }

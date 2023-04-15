@@ -1,0 +1,130 @@
+body {
+  max-height: 100vh;
+}
+
+table {
+  background-color: #ffffff;
+  border-color: #ffffff !important;
+  color: var(--theme) !important;
+}
+
+thead,
+th {
+  background-color: var(--theme) !important;
+  color: var(--text);
+  font-weight: normal !important;
+}
+
+th,
+td {
+  padding: 0.8rem 1.5rem !important;
+  vertical-align: middle;
+}
+
+.panelDataMiddleBlock {
+  margin: 30px 0px 25px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panelDataMiddleBlock p,
+.formWrapper p {
+  font-size: 1.2rem;
+}
+
+.formWrapper {
+  margin: 45px 80px 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.overviewCardsArea {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+}
+
+.overviewCard {
+  height: 140px;
+  background-color: var(--border);
+  min-width: 20%;
+  padding: 20px 28px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 0px var(--theme);
+  transition: all 0.2s ease-out;
+}
+
+.overviewCard:hover {
+  box-shadow: 0px 10px 0px 0px var(--theme);
+  transform: translateY(-10px);
+}
+.overviewCard h1,
+p {
+  color: var(--theme);
+}
+
+.cardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.userCards {
+  width: 290px;
+  cursor: pointer;
+}
+
+.userCards:hover .userCardLogo {
+  color: var(--text);
+}
+
+.userCardTop {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-top: 5px;
+  background-color: var(--theme);
+}
+
+.userCardLogo {
+  color: var(--text-big);
+  font-size: 2rem;
+}
+
+.userCardMiddle {
+  height: 170px;
+  border: 5px solid var(--border);
+  border-top-color: var(--theme);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardName {
+  font-size: 1.4rem;
+  color: var(--text-big);
+}
+
+.cardEmail {
+  font-size: 0.9rem;
+  color: var(--text-big);
+}
+
+.userCardBottom {
+  background-color: var(--border);
+  height: 71px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.cardBottomText {
+  color: var(--text-big);
+}

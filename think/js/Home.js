@@ -56,12 +56,17 @@ loginForm.addEventListener("submit", async (e) => {
         },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
-      const { status, message } = await res.json();
-      alert(message);
+      if (res.ok) {
+        const data = await res.json();
+        window.location.href =
+          data.userType == "admin" ? "/AdminPanel" : "/UserPanel";
+        loginForm.reset();
+      } else if (res.status == 404) {
+        alert(res.statusText);
+      }
     } catch (error) {
       console.log(error);
     }
-    loginForm.reset();
   }
 });
 
@@ -97,8 +102,12 @@ signupForm.addEventListener("submit", async (e) => {
         },
         body: JSON.stringify({ fullname, email, mobile, password }),
       });
-      const { status, message } = await res.json();
-      alert(message);
+      if (res.ok) {
+        const { status, message } = await res.json();
+        window.location.href = "/UserPanel";
+      } else if (res.status == 409) {
+        alert(res.statusText);
+      }
       signupForm.reset();
     } catch (error) {
       console.log(error);

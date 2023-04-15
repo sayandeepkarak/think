@@ -24,6 +24,7 @@ namespace think.api
         {
             if (context.Request.HttpMethod == "POST") {
                 string query,status,message,json;
+                Dictionary<string, string> resData = new Dictionary<string, string>();
                 JsonHelper jsonConverter = new JsonHelper();
                 RequestBody data = jsonConverter.parseWithStream<RequestBody>(context.Request.InputStream);
                 InternalSqlCrud crud = new InternalSqlCrud();
@@ -42,7 +43,9 @@ namespace think.api
                     message = "User already exist";
                     
                 }
-                json = jsonConverter.stringWithResponse(status, message);
+                resData.Add("status", status);
+                resData.Add("message", message);
+                json = jsonConverter.stringWithResponse(resData);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = Convert.ToInt16(status);
                 context.Response.Write(json);
