@@ -94,6 +94,15 @@ namespace think.template {
         protected global::System.Web.UI.WebControls.Button issueBook;
         
         /// <summary>
+        /// hii control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hii;
+        
+        /// <summary>
         /// txt control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,22 @@ namespace think.template {
         protected global::System.Web.UI.UpdatePanel returnBookPanel;
         
         /// <summary>
-        /// issueId control.
+        /// returnMobiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList issueId;
+        protected global::System.Web.UI.WebControls.DropDownList returnMobiles;
+        
+        /// <summary>
+        /// specificBooks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList specificBooks;
         
         /// <summary>
         /// fetchIssueBook control.
@@ -128,5 +146,86 @@ namespace think.template {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button fetchIssueBook;
+        
+        /// <summary>
+        /// returnBookTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table returnBookTable;
+        
+        /// <summary>
+        /// returnId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnId;
+        
+        /// <summary>
+        /// returnBook control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnBook;
+        
+        /// <summary>
+        /// returnStudent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnStudent;
+        
+        /// <summary>
+        /// returnIssueDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnIssueDate;
+        
+        /// <summary>
+        /// retDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell retDate;
+        
+        /// <summary>
+        /// returnFine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnFine;
+        
+        /// <summary>
+        /// returnControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell returnControl;
+        
+        /// <summary>
+        /// returnBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button returnBtn;
     }
 }

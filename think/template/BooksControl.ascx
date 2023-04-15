@@ -10,35 +10,55 @@
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-allbooks" role="tabpanel" aria-labelledby="nav-allbooks-tab">
-        <asp:UpdatePanel ID="allBookPanel" runat="server">
+        <asp:UpdatePanel ID="overviewpanel" runat="server">
             <ContentTemplate>
                 <div class="panelDataMiddleBlock">
                     <p>Overview</p>
                 </div>    
                 <div class="overviewCardsArea">
                     <div class="overviewCard">
-                        <h1>10</h1>
+                        <h1 id="totalbooks" runat="server"></h1>
                         <p>Total</p>
                     </div>
                     <div class="overviewCard">
-                        <h1>10</h1>
-                        <p>In Stock</p>
+                        <h1 id="quantityBooks" runat="server"></h1>
+                        <p>Quantity</p>
                     </div>
                     <div class="overviewCard">
-                        <h1>10</h1>
+                        <h1 id="totalIssue" runat="server"></h1>
+                        <p>Issued</p>
+                    </div>
+                    <div class="overviewCard">
+                        <h1 id="outstock" runat="server"></h1>
                         <p>Out Of Stock</p>
                     </div>
                 </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:UpdatePanel ID="allBookPanel" runat="server">
+            <ContentTemplate>
                 <div class="panelDataMiddleBlock">
                     <p>All books</p>
                     <asp:DropDownList ID="searchId" runat="server" CssClass="inputs" AutoPostBack="True" onselectedindexchanged="searchId_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>    
                 <div class="tableWrapper">
-                    <asp:GridView ID="allBooks" runat="server" CssClass="table table-striped table-hover"></asp:GridView>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <td>Isbn</td>
+                                <td>Bookname</td>
+                                <td>Author</td>
+                                <td>Price</td>
+                                <td>Quantity</td>
+                                <td>Stock</td>
+                            </tr>
+                        </thead>
+                        <tbody ID="allBooksBody" runat="server"></tbody>
+                    </table>
                 </div>
             </ContentTemplate>
-        </asp:UpdatePanel>
+        </asp:UpdatePanel>  
     </div>
     <div class="tab-pane fade" id="nav-addUpdate" role="tabpanel" aria-labelledby="nav-addUpdate-tab">
         <div class="formWrapper">

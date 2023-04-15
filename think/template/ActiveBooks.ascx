@@ -13,7 +13,9 @@
             <ContentTemplate>
                 <div class="panelDataMiddleBlock">
                     <p>Issued books</p>
-                    <asp:DropDownList ID="issueBookNames" runat="server" CssClass="inputs" AutoPostBack="True">
+                    <asp:DropDownList ID="issueBookNames" runat="server" CssClass="inputs" 
+                        AutoPostBack="True" 
+                        onselectedindexchanged="issueBookNames_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>    
                 <div class="tableWrapper">
@@ -41,44 +43,38 @@
             </div>
         </div>
 
-        <div class="formWrapper">
+        <div id="hii" runat="server" class="formWrapper">
             <p id="txt" runat="server">Return book</p>
             <asp:UpdatePanel ID="returnBookPanel" runat='server'>
                 <ContentTemplate>
                     <div class="findBookBlock">
-                        <asp:DropDownList ID="issueId" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList>
-                        <asp:Button id="fetchIssueBook" runat="server" CssClass="themeBtn ml" Text="Fetch" />
+                        <asp:DropDownList ID="returnMobiles" runat="server" CssClass="inputs" 
+                            AutoPostBack="True" onselectedindexchanged="returnMobiles_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="specificBooks" runat="server" CssClass="inputs" AutoPostBack="True" Enabled="false"></asp:DropDownList>
+                        <asp:Button id="fetchIssueBook" runat="server" CssClass="themeBtn ml" Text="Fetch" onclick="fetchIssueBook_Click"/>
                     </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Book</th>
-                                <th>
-                                    Student</th>
-                                <th>
-                                    issuedate</th>
-                                <th>
-                                    returndate</th>
-                                <th>
-                                    fine</th>
-                                <th>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>C#</td>   
-                                <td>Sayandeep Karak</td>   
-                                <td>10-01-2023</td>   
-                                <td>17-01-2023</td>   
-                                <td>14.52</td>   
-                                <td>
-                                    <button class="themeBtn">Return</button>
-                                </td>   
-                            </tr>
-                        </tbody>
-                    </table>
+                    <asp:Table id="returnBookTable" runat="server" CssClass="table table-striped table-hover">
+                        <asp:TableHeaderRow runat="server">
+                            <asp:TableHeaderCell Text="Id" />
+                            <asp:TableHeaderCell Text="Book" />
+                            <asp:TableHeaderCell Text="Student" />
+                            <asp:TableHeaderCell Text="Issuedate" />
+                            <asp:TableHeaderCell Text="Returndate" />
+                            <asp:TableHeaderCell Text="Fine" />
+                            <asp:TableHeaderCell Text="Control" />
+                        </asp:TableHeaderRow>
+                        <asp:TableRow>
+                            <asp:TableCell ID="returnId" />
+                            <asp:TableCell ID="returnBook" />
+                            <asp:TableCell ID="returnStudent" />
+                            <asp:TableCell ID="returnIssueDate" />
+                            <asp:TableCell ID="retDate" />
+                            <asp:TableCell ID="returnFine" />
+                            <asp:TableCell ID="returnControl">
+                                <asp:Button id="returnBtn" CssClass="themeBtn" runat="server" Text='Return' Visible="false" onclick="returnBtn_Click" />
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

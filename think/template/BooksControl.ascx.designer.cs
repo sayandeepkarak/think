@@ -13,6 +13,51 @@ namespace think.template {
     public partial class BooksControl {
         
         /// <summary>
+        /// overviewpanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel overviewpanel;
+        
+        /// <summary>
+        /// totalbooks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalbooks;
+        
+        /// <summary>
+        /// quantityBooks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl quantityBooks;
+        
+        /// <summary>
+        /// totalIssue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalIssue;
+        
+        /// <summary>
+        /// outstock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl outstock;
+        
+        /// <summary>
         /// allBookPanel control.
         /// </summary>
         /// <remarks>
@@ -31,13 +76,13 @@ namespace think.template {
         protected global::System.Web.UI.WebControls.DropDownList searchId;
         
         /// <summary>
-        /// allBooks control.
+        /// allBooksBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView allBooks;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl allBooksBody;
         
         /// <summary>
         /// addBookPanel control.

@@ -13,7 +13,57 @@ namespace think.template
     {
         private void fillGrid(string query) {
             InternalSqlCrud crud = new InternalSqlCrud();
-            crud.fillGrid(query,allBooks);
+            //crud.fillGrid(query,allBooks);
+            SqlDataReader data = crud.executeReader(query);
+            SqlDataReader stockDetails;
+            if (data.HasRows) {
+                string booksData = "";
+                while (data.Read()) {
+                    string bookIsbn = data["isbn"].ToString();
+                    stockDetails = crud.executeReader("SELECT COUNT(*) AS Avail FROM books WHERE isbn=" + bookIsbn + " AND quantity=(SELECT COUNT(*) AS quantity FROM activebooks WHERE isbn=" + bookIsbn + ")");
+                    if (stockDetails.HasRows)
+                    {
+                        stockDetails.Read();
+                        string availText = stockDetails[0].ToString() == "0" ? "Available" : "Unavilable";
+                        string availClass = stockDetails[0].ToString() == "0" ? "text-success" : "text-danger";
+                        booksData += String.Format(@"
+                        <tr><td>{0}</td>
+                            <td>{1}</td>
+                            <td>{2}</td>
+                            <td>{3}</td>
+                            <td>{4}</td>
+                            <td><p class='{5}'>{6}</p></td>
+                        </tr>", bookIsbn, data["bookname"].ToString(), data["author"].ToString(), data["price"].ToString(), data["quantity"].ToString(), availClass, availText);
+                    }
+                }
+                allBooksBody.InnerHtml = booksData;   
+            }
+        }
+
+        private void calculateTotalBooks() {
+            InternalSqlCrud crud = new InternalSqlCrud();
+            SqlDataReader data = crud.executeReader("SELECT SUM(CAST(quantity AS INT)) AS Totalquantity, COUNT(*) As Totalbooks FROM books b");
+            if (data.HasRows)
+            {
+                data.Read();
+                totalbooks.InnerText = data["Totalbooks"].ToString();
+                quantityBooks.InnerText = data["Totalquantity"].ToString();
+            }
+        }
+
+        public void calculateStocks() {
+            InternalSqlCrud crud = new InternalSqlCrud();
+            SqlDataReader data = crud.executeReader("SELECT COUNT(*) AS Totalissue FROM activebooks");
+            if (data.HasRows) {
+                data.Read();
+                totalIssue.InnerText = data["Totalissue"].ToString();
+            }
+            data = crud.executeReader("SELECT COUNT(*) AS Outofstock FROM books WHERE isbn IN (SELECT DISTINCT isbn FROM activebooks) AND quantity IN(SELECT COUNT(*) AS quantity FROM activebooks GROUP BY isbn)");
+            if (data.HasRows)
+            {
+                data.Read();
+                outstock.InnerText = data["Outofstock"].ToString();
+            }
         }
 
         private void fillId() {
@@ -56,7 +106,8 @@ namespace think.template
                     bookName.Text = "";
                     author.Text = "";
                     bookPrice.Text = "";
-                    bookQuantity.Text = "";
+                    bookQuantity.Text = ""; 
+                    calculateTotalBooks();
                     fillGrid("SELECT * FROM books");
                     fillId();
                 }
@@ -71,6 +122,8 @@ namespace think.template
             {
                 fillGrid("SELECT * FROM books");
                 fillId();
+                calculateTotalBooks();
+                calculateStocks();
             }
         }
 
@@ -120,6 +173,7 @@ namespace think.template
                 bool res = crud.executeCommand(query);
                 if (res)
                 {
+                    calculateTotalBooks();
                     fillGrid("SELECT * FROM books");
                     updateId.ClearSelection();
                     updBookName.Text = "";

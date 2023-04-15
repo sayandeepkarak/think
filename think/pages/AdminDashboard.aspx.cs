@@ -34,7 +34,29 @@ namespace think.pages
                     SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
                     if (data.HasRows)
                     {
-                        data.Read();
+                        data = crud.executeReader("SELECT id,fullname,email,mobile FROM users WHERE userType='user'");
+                        if (data.HasRows)
+                        {
+                            string cards = "";
+                            while (data.Read())
+                            {
+                                cards += String.Format(@"
+                                         <div class='userCards'>
+                                             <div class='userCardTop'>
+                                                <p class='userCardLogo'>#think-{0}</p>
+                                             </div>
+                                             <div class='userCardMiddle'>
+                                                 <p class='cardName'>{1}</p>
+                                                 <p class='cardEmail'>{2}</p>
+                                             </div>
+                                             <div class='userCardBottom'>
+                                                <p class='cardBottomText'>Mobile - <span> {3}</span></p>
+                                             </div>
+                                         </div>
+                                      ", data["id"].ToString(), data["fullname"].ToString(), data["email"].ToString(), data["mobile"]);
+                            }
+                            userCardsArea.InnerHtml = cards;
+                        }
                     }
                     else
                     {
