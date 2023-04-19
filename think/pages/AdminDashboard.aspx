@@ -9,7 +9,7 @@
       <html xmlns="http://www.w3.org/1999/xhtml">
 
       <head runat="server">
-        <title>AdminPanel</title>
+        <title>think</title>
         <link href="/css/global.css" rel="stylesheet" type="text/css" />
         <link href="/css/panel.css" rel="stylesheet" type="text/css" />
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

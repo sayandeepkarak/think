@@ -25,22 +25,20 @@ namespace think.pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "admin")
             {
-                if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "admin")
+                string userId = Request.Cookies["userId"].Value;
+                InternalSqlCrud crud = new InternalSqlCrud();
+                SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
+                if (data.HasRows)
                 {
-                    string userId = Request.Cookies["userId"].Value;
-                    InternalSqlCrud crud = new InternalSqlCrud();
-                    SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
+                    data = crud.executeReader("SELECT id,fullname,email,mobile FROM users WHERE userType='user'");
                     if (data.HasRows)
                     {
-                        data = crud.executeReader("SELECT id,fullname,email,mobile FROM users WHERE userType='user'");
-                        if (data.HasRows)
+                        string cards = "";
+                        while (data.Read())
                         {
-                            string cards = "";
-                            while (data.Read())
-                            {
-                                cards += String.Format(@"
+                            cards += String.Format(@"
                                          <div class='userCards'>
                                              <div class='userCardTop'>
                                                 <p class='userCardLogo'>#think-{0}</p>
@@ -54,13 +52,8 @@ namespace think.pages
                                              </div>
                                          </div>
                                       ", data["id"].ToString(), data["fullname"].ToString(), data["email"].ToString(), data["mobile"]);
-                            }
-                            userCardsArea.InnerHtml = cards;
                         }
-                    }
-                    else
-                    {
-                        clearCookie();
+                        userCardsArea.InnerHtml = cards;
                     }
                 }
                 else
@@ -68,6 +61,11 @@ namespace think.pages
                     clearCookie();
                 }
             }
+            else
+            {
+                clearCookie();
+            }
+            
         }
     }
 }

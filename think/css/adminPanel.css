@@ -2,9 +2,14 @@ body {
   max-height: 100vh;
 }
 
+.logo {
+  background-color: var(--theme);
+  color: var(--text);
+}
+
 table {
-  background-color: #ffffff;
-  border-color: #ffffff !important;
+  background-color: var(--white);
+  border-color: var(--white) !important;
   color: var(--theme) !important;
 }
 
@@ -83,7 +88,7 @@ p {
 }
 
 .userCardTop {
-  height: 70px;
+  height: 65px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -98,7 +103,7 @@ p {
 }
 
 .userCardMiddle {
-  height: 170px;
+  height: 160px;
   border: 5px solid var(--border);
   border-top-color: var(--theme);
   display: flex;
@@ -119,7 +124,7 @@ p {
 
 .userCardBottom {
   background-color: var(--border);
-  height: 71px;
+  height: 65px;
   display: flex;
   align-items: center;
   padding-left: 20px;

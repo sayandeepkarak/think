@@ -62,7 +62,7 @@ loginForm.addEventListener("submit", async (e) => {
           data.userType == "admin" ? "/AdminPanel" : "/UserPanel";
         loginForm.reset();
       } else if (res.status == 404) {
-        alert(res.statusText);
+        alert("Invalid credential");
       }
     } catch (error) {
       console.log(error);
