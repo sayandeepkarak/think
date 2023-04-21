@@ -1,43 +1,4 @@
-﻿#homeSection {
-  height: calc(100vh - 70px);
-  display: flex;
-  margin: 0 100px;
-}
-
-.homeChilds {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-direction: column;
-  flex: 1;
-}
-
-#homeRight {
-  align-items: center;
-}
-
-#homeImage {
-  height: 420px;
-  margin-bottom: 10vh;
-}
-
-.homeBigText {
-  font-weight: 500;
-  color: var(--text-big);
-  font-size: 3rem;
-  line-height: 56px;
-}
-
-.homeSmallText {
-  font-style: italic;
-  margin-top: 10px !important;
-}
-
-#homeLeft button {
-  margin-top: 20px;
-}
-
-#signup {
+﻿#signup {
   width: 400px;
 }
 

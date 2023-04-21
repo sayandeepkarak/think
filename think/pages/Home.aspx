@@ -6,7 +6,7 @@
   <html xmlns="http://www.w3.org/1999/xhtml">
 
   <head id="Head1" runat="server">
-    <title>Home</title>
+    <title>think</title>
     <link href="/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/css/home.css" rel="stylesheet" type="text/css" />
   </head>
@@ -17,8 +17,8 @@
       <button id="openLogin" class="themeBtn">Login</button>
     </header>
 
-    <section id="homeSection">
-      <div id="homeLeft" class="homeChilds">
+    <section class="homeSection">
+      <div class="homeChilds homeLeft">
         <p class="homeBigText">We are good just ask</p>
         <p class="homeBigText">our moms</p>
         <p class="homeSmallText">There is no one friend as loyal as book</p>
@@ -26,8 +26,8 @@
           Create a student account
         </button>
       </div>
-      <div id="homeRight" class="homeChilds">
-        <img src="/assets/home.png" alt="Home" id="homeImage" />
+      <div class="homeChilds homeRight">
+        <img src="/assets/home.png" alt="Home" id="homeImage" class="homeImage" loading="lazy" />
 
         <form id="login" class="forms">
           <p>Login</p>
@@ -50,6 +50,11 @@
         </form>
       </div>
     </section>
+
+    <section class="sections">
+
+    </section>
+
     <script src="/js/Home.js" type="text/javascript"></script>
   </body>
 

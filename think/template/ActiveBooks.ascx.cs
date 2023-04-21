@@ -61,7 +61,7 @@ namespace think.template
             SqlDataReader data = crud.executeReader("SELECT b.isbn,b.bookname FROM books b WHERE quantity<>(SELECT COUNT(*) AS quantity FROM activebooks a WHERE a.isbn=b.isbn)");
             fillList(bookNames, data, 1, 0);
 
-            data = crud.executeReader("SELECT id,mobile FROM users");
+            data = crud.executeReader("SELECT id,mobile FROM users WHERE userType='user'");
             fillList(studentMobile, data, 1, 0);
             issuedate.Text = DateTime.Now.AddDays(5).ToString("yyyy-MM-dd");
 

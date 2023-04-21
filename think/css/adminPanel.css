@@ -2,23 +2,9 @@ body {
   max-height: 100vh;
 }
 
-table {
-  background-color: #ffffff;
-  border-color: #ffffff !important;
-  color: var(--theme) !important;
-}
-
-thead,
-th {
-  background-color: var(--theme) !important;
+.logo {
+  background-color: var(--theme);
   color: var(--text);
-  font-weight: normal !important;
-}
-
-th,
-td {
-  padding: 0.8rem 1.5rem !important;
-  vertical-align: middle;
 }
 
 .panelDataMiddleBlock {
@@ -83,7 +69,7 @@ p {
 }
 
 .userCardTop {
-  height: 70px;
+  height: 65px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -98,7 +84,7 @@ p {
 }
 
 .userCardMiddle {
-  height: 170px;
+  height: 160px;
   border: 5px solid var(--border);
   border-top-color: var(--theme);
   display: flex;
@@ -119,7 +105,7 @@ p {
 
 .userCardBottom {
   background-color: var(--border);
-  height: 71px;
+  height: 65px;
   display: flex;
   align-items: center;
   padding-left: 20px;
