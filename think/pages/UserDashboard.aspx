@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserDashboard.aspx.cs" Inherits="think.pages.UserDashboard" %>
-<%@ Register Src="~/template/AllBooks.ascx" TagName="BooksCard" TagPrefix="Book" %>
+
   <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -78,15 +78,54 @@
           </div>
         </section>
 
-        <Book:BooksCard id="booksCardControl" runat="server" />
+        <asp:UpdatePanel ID="allBooksPanel" class="searchBookBlock" runat="server">
+          <ContentTemplate>
+            <section id="allBooks" class="sections">
+              <div class="sectionTop">
+                <p class="sectionTopText">All Books</p>
+                <div>
+                  <asp:TextBox ID="bookNameSearch" runat="server" CssClass="inputs" placeholder="Enter book name">
+                  </asp:TextBox>
+                  <asp:Button ID="bookSearchBtn" runat="server" Text="Find" CssClass="themeBtn"
+                    onclick="bookSearchBtn_Click" />
+                  <asp:Button ID="clearBtn" runat="server" Text="Clear" CssClass="themeBtn" onclick="clearBtn_Click" />
+                </div>
+              </div>
+              <div id="booksCardArea" class="bookDataArea cardScroller" runat="server"></div>
+            </section>
+          </ContentTemplate>
+        </asp:UpdatePanel>
 
-        <section id="myBooks" class="sections">
+        <asp:UpdatePanel ID="filterBookPanel" runat="server">
+          <ContentTemplate>
+            <section id="myBooks" class="sections">
+              <div class="sectionTop">
+                <p class="sectionTopText">My Books</p>
+                <asp:DropDownList ID="myBookFilter" runat="server" CssClass="inputs" AutoPostBack="True">
+                  <asp:ListItem>All Books</asp:ListItem>
+                  <asp:ListItem>Billed</asp:ListItem>
+                  <asp:ListItem>Unbilled</asp:ListItem>
+                </asp:DropDownList>
+              </div>
+              <div class="bookDataArea">
+                <asp:Table id="myBooksTable" runat="server" CssClass="table table-striped table-hover">
+                  <asp:TableHeaderRow runat="server">
+                    <asp:TableHeaderCell Text="Book" />
+                    <asp:TableHeaderCell Text="Issuedate" />
+                    <asp:TableHeaderCell Text="Returndate" />
+                    <asp:TableHeaderCell Text="Fine" />
+                  </asp:TableHeaderRow>
+                  <asp:TableRow>
+                  </asp:TableRow>
+                </asp:Table>
+              </div>
+            </section>
+          </ContentTemplate>
+        </asp:UpdatePanel>
 
-        </section>
       </div>
     </form>
     <script src="/js/UserPanel.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
 

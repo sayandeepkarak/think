@@ -61,7 +61,7 @@
   width: 100%;
 }
 
-.bookCardsArea {
+.bookDataArea {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -101,15 +101,15 @@
 
 .booksText {
   position: absolute;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: var(--text);
   z-index: 2;
   filter: drop-shadow(2px 2px 10px #000000);
 }
 
 .bookName {
-  left: 15px;
-  top: 11px;
+  left: 20px;
+  top: 14px;
 }
 
 .bookAuthor {
@@ -124,4 +124,8 @@
 
 .bookPrice {
   color: var(--text);
+}
+
+.searchBookBlock .inputs {
+  margin-right: 10px;
 }

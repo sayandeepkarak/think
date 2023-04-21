@@ -130,12 +130,75 @@ namespace think.pages {
         protected global::System.Web.UI.WebControls.Button updateBtn;
         
         /// <summary>
-        /// booksCardControl control.
+        /// allBooksPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::think.template.AllBooks booksCardControl;
+        protected global::System.Web.UI.UpdatePanel allBooksPanel;
+        
+        /// <summary>
+        /// bookNameSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox bookNameSearch;
+        
+        /// <summary>
+        /// bookSearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bookSearchBtn;
+        
+        /// <summary>
+        /// clearBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button clearBtn;
+        
+        /// <summary>
+        /// booksCardArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl booksCardArea;
+        
+        /// <summary>
+        /// filterBookPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel filterBookPanel;
+        
+        /// <summary>
+        /// myBookFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList myBookFilter;
+        
+        /// <summary>
+        /// myBooksTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table myBooksTable;
     }
 }

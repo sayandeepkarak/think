@@ -153,3 +153,22 @@ header {
 .overflow-auto::-webkit-scrollbar {
   display: none;
 }
+
+table {
+  background-color: var(--white);
+  border-color: var(--white) !important;
+  color: var(--theme) !important;
+}
+
+thead,
+th {
+  background-color: var(--theme) !important;
+  color: var(--text);
+  font-weight: normal !important;
+}
+
+th,
+td {
+  padding: 0.8rem 1.5rem !important;
+  vertical-align: middle;
+}

@@ -74,7 +74,6 @@
     <Content Include="pages\Home.aspx" />
     <Content Include="pages\UserDashboard.aspx" />
     <Content Include="template\ActiveBooks.ascx" />
-    <Content Include="template\AllBooks.ascx" />
     <Content Include="template\BooksControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -124,13 +123,6 @@
     </Compile>
     <Compile Include="template\ActiveBooks.ascx.designer.cs">
       <DependentUpon>ActiveBooks.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="template\AllBooks.ascx.cs">
-      <DependentUpon>AllBooks.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="template\AllBooks.ascx.designer.cs">
-      <DependentUpon>AllBooks.ascx</DependentUpon>
     </Compile>
     <Compile Include="template\BooksControl.ascx.cs">
       <DependentUpon>BooksControl.ascx</DependentUpon>

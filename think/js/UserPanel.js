@@ -3,13 +3,15 @@ const openBtn = document.getElementById("openUpdateForm");
 const panelImage = document.getElementById("userPanelImage");
 const userInfoForm = document.getElementById("userInfoform");
 
+const resetAllInput = (...inputs) => {
+  Array.from(inputs).forEach((e) => {
+    document.getElementById(e).value = "";
+    document.getElementById(e).style.border = "1px solid var(--border)";
+  });
+};
+
 const toggleForm = (isOpen) => {
-  if (!isOpen) {
-    document.getElementById("fullname").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("mobile").value = "";
-    document.getElementById("password").value = "";
-  }
+  !isOpen && resetAllInput("fullname", "email", "mobile", "password");
   panelImage.style.display = isOpen ? "none" : "block";
   userInfoForm.style.display = isOpen ? "flex" : "none";
 };

@@ -24,7 +24,7 @@ namespace think.template
                     if (stockDetails.HasRows)
                     {
                         stockDetails.Read();
-                        string availText = stockDetails[0].ToString() == "0" ? "Available" : "Unavilable";
+                        string availText = stockDetails[0].ToString() == "0" ? "In Stock" : "Out Of Stock";
                         string availClass = stockDetails[0].ToString() == "0" ? "text-success" : "text-danger";
                         booksData += String.Format(@"
                         <tr><td>{0}</td>
