@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  filter: drop-shadow(1px 1px 16px var(--shadow));
 }
 
 .side-tabs {
@@ -26,8 +27,9 @@
 .panelsTabsArea {
   height: 60px;
   background-color: var(--border);
-  width: 40%;
   display: flex;
+  width: max-content;
+  margin-bottom: 50px;
 }
 
 .tabContent {
@@ -42,6 +44,11 @@
   color: var(--theme);
   flex: 1;
   border: none !important;
+  width: 14rem;
+}
+
+.panelTabsWrapper button:hover {
+  color: var(--theme) !important;
 }
 
 .inputs {

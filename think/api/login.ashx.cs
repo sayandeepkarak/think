@@ -41,15 +41,7 @@ namespace think.api
                     
                     status = "200";
                     message = "Success";
-
-                    if (userType == "admin")
-                    {
-                        resData.Add("userType", "admin");
-                    }
-                    else
-                    {
-                        resData.Add("userType", "user");
-                    }
+                    resData.Add("userType", userType == "admin" ? "admin" : "user");
                 }
                 else {
                     status = "404";

@@ -2,6 +2,16 @@
   width: 400px;
 }
 
+#signup button {
+  margin-bottom: 10px;
+}
+
+#login {
+  width: 380px;
+  padding: 45px 32px;
+  gap: 22px;
+}
+
 .forms {
   display: none;
 }

@@ -30,13 +30,22 @@ namespace think.api
                 InternalSqlCrud crud = new InternalSqlCrud();
                 query = "SELECT * FROM users WHERE email='" + data.email + "'";
                 SqlDataReader dataReader = crud.executeReader(query);
+
                 if (!dataReader.HasRows)
                 {
                     query = "INSERT INTO users(userType,fullname,email,mobile,password) ";
                     query += "VALUES('user','" + data.fullname + "','" + data.email + "','" + data.mobile + "','" + data.password + "')";
                     bool result = crud.executeCommand(query);
+                    dataReader = crud.executeReader("SELECT id FROM users WHERE email='" + data.email + "'");
                     message = result ? "Register Success" : "Internal server error";
                     status = result ? "200" : "500";
+
+                    HttpCookie cookie1 = new HttpCookie("userId", dataReader["id"].ToString());
+                    HttpCookie cookie2 = new HttpCookie("userType", "user");
+                    cookie1.Expires = DateTime.Now.AddMonths(1);
+                    cookie2.Expires = DateTime.Now.AddMonths(1);
+                    context.Response.Cookies.Add(cookie1);
+                    context.Response.Cookies.Add(cookie2);
                 }
                 else {
                     status = "409";
