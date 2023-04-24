@@ -42,7 +42,8 @@ namespace think.template
             } 
         }
 
-        private void fillHistory(string query="SELECT operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history") {
+        private void fillHistory(string query = "SELECT id AS Id,operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history ORDER BY Id DESC")
+        {
             InternalSqlCrud crud = new InternalSqlCrud();
             crud.fillGrid(query, allHistory);
         }
@@ -124,7 +125,8 @@ namespace think.template
                 query += String.Format("VALUES ('{0}','{1}','{2}','{3}','{4}')", bookNames.SelectedValue, studentMobile.SelectedValue, issuedate.Text, returndate.Text, "0");
                 bool res = crud.executeCommand(query);
                 string msg = res ? "Book issued successfully" : "Failed to issue book";
-                if (res) {
+                if (res)
+                {
                     bookNames.ClearSelection();
                     studentMobile.ClearSelection();
                     returndate.Text = "";
@@ -132,7 +134,7 @@ namespace think.template
                     fillInputs();
                     fillHistory();
                 }
-                ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
+                Validation.alertInJs(issueBookPanel, res, msg);
             }
         }
 
@@ -232,7 +234,7 @@ namespace think.template
                 fillGrid(this.gridQuery);
                 fillHistory();
             }
-            ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
+            Validation.alertInJs(returnBookPanel, res, msg);
         }
 
         protected void renewBookNames_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,7 +274,7 @@ namespace think.template
                 fillGrid(this.gridQuery);
                 fillHistory();
             }
-            ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(true,'Successfully renew book');", true);
+            Validation.alertInJs(renewIssuePanel, res, msg);
         }
 
         protected void specificBooks_SelectedIndexChanged(object sender, EventArgs e)
@@ -284,7 +286,7 @@ namespace think.template
         {
             if (historyFilter.SelectedIndex != 0)
             {
-                fillHistory("SELECT operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history WHERE operation='" + historyFilter.SelectedValue + "'");
+                fillHistory("SELECT id AS Id,operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history WHERE operation='" + historyFilter.SelectedValue + "' ORDER BY Id DESC");
             }
             else {
                 fillHistory();

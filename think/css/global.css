@@ -20,6 +20,7 @@ html {
   --text-big: rgb(41, 44, 49);
   --error-border: #e33169;
   --shadow: #cdcdcdc9;
+  --shadow-dark: #000000a1;
 }
 
 :root::-webkit-scrollbar {
@@ -53,7 +54,7 @@ header {
   display: grid;
   place-items: center;
   font-size: 1.8rem;
-  filter: drop-shadow(1px 1px 16px var(--shadow));
+  filter: drop-shadow(1px 1px 16px var(--shadow-dark));
 }
 
 .themeBtn {

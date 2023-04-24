@@ -63,12 +63,6 @@ namespace think.template
                 data.Read();
                 totalIssue.InnerText = data["Totalissue"].ToString();
             }
-            // data = crud.executeReader("SELECT COUNT(*) AS Outofstock FROM books WHERE isbn IN (SELECT DISTINCT isbn FROM activebooks) AND quantity IN(SELECT COUNT(*) AS quantity FROM activebooks GROUP BY isbn)");
-            // if (data.HasRows)
-            // {
-            //     data.Read();
-            //     outstock.InnerText = data["Outofstock"].ToString();
-            // }
         }
 
         private void fillId() {
@@ -114,7 +108,8 @@ namespace think.template
                     calculateTotalBooks();
                     fillGrid("SELECT * FROM books");
                     fillId();
-                } ScriptManager.RegisterStartupScript(updateBookPanel, updateBookPanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
+                }
+                Validation.alertInJs(addBookPanel, res, msg);
                 addBook.Text = "Add";
                 addBook.Enabled = true;
             }
@@ -186,7 +181,7 @@ namespace think.template
                     updBookPrice.Text = "";
                     updBookQuantity.Text = "";
                 }
-                ScriptManager.RegisterStartupScript(updateBookPanel, updateBookPanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
+                Validation.alertInJs(updateBookPanel, res, msg);
                 updateBook.Enabled = true;
                 updateBook.Text = "Update";
             }

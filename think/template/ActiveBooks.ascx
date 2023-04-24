@@ -122,7 +122,8 @@
                     </asp:DropDownList>
                 </div>    
                 <div class="tableWrapper">
-                    <asp:GridView ID="allHistory" runat="server" CssClass="table table-striped table-hover"></asp:GridView>
+                    <asp:GridView ID="allHistory" runat="server" 
+                        CssClass="table table-striped table-hover" PageSize="5"></asp:GridView>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
