@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace think.pages
 {
@@ -32,6 +33,7 @@ namespace think.pages
                 SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
                 if (data.HasRows)
                 {
+                    FineCalculator.calculateFine(true, userId);
                     data = crud.executeReader("SELECT id,fullname,email,mobile FROM users WHERE userType='user'");
                     if (data.HasRows)
                     {

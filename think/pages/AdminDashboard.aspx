@@ -35,12 +35,12 @@
                 <button class="nav-link side-tabs" id="v-pills-issuereturn-tab" data-bs-toggle="pill"
                   data-bs-target="#v-pills-issuereturn" type="button" role="tab" aria-controls="v-pills-issuereturn"
                   aria-selected="false">
-                  Issue_Return
+                  Borrow
                 </button>
                 <button class="nav-link side-tabs" id="v-pills-users-tab" data-bs-toggle="pill"
                   data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users"
                   aria-selected="false">
-                  Users
+                  Members
                 </button>
               </div>
             </div>
@@ -63,9 +63,12 @@
                 </asp:UpdatePanel>
               </div>
             </div>
+            <div id="alertArea" class="alertArea"></div>
           </div>
+
         </form>
         <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <script src="/js/AdminPanel.js" type="text/javascript"></script>
       </body>
 
       </html>

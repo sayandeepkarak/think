@@ -13,19 +13,23 @@ namespace think.template
     {
         private void fillGrid(string query) {
             InternalSqlCrud crud = new InternalSqlCrud();
-            //crud.fillGrid(query,allBooks);
             SqlDataReader data = crud.executeReader(query);
             SqlDataReader stockDetails;
             if (data.HasRows) {
                 string booksData = "";
+                int outOfStock = 0;
                 while (data.Read()) {
                     string bookIsbn = data["isbn"].ToString();
                     stockDetails = crud.executeReader("SELECT COUNT(*) AS Avail FROM books WHERE isbn=" + bookIsbn + " AND quantity=(SELECT COUNT(*) AS quantity FROM activebooks WHERE isbn=" + bookIsbn + ")");
                     if (stockDetails.HasRows)
                     {
                         stockDetails.Read();
-                        string availText = stockDetails[0].ToString() == "0" ? "In Stock" : "Out Of Stock";
-                        string availClass = stockDetails[0].ToString() == "0" ? "text-success" : "text-danger";
+                        bool isAvail = stockDetails[0].ToString() == "0";
+                        string availText = isAvail ? "In Stock" : "Out Of Stock";
+                        string availClass = isAvail ? "text-success" : "text-danger";
+                        if (!isAvail) {
+                            outOfStock++;
+                        }
                         booksData += String.Format(@"
                         <tr><td>{0}</td>
                             <td>{1}</td>
@@ -36,7 +40,8 @@ namespace think.template
                         </tr>", bookIsbn, data["bookname"].ToString(), data["author"].ToString(), data["price"].ToString(), data["quantity"].ToString(), availClass, availText);
                     }
                 }
-                allBooksBody.InnerHtml = booksData;   
+                allBooksBody.InnerHtml = booksData;
+                outstock.InnerText = outOfStock.ToString();
             }
         }
 
@@ -58,12 +63,12 @@ namespace think.template
                 data.Read();
                 totalIssue.InnerText = data["Totalissue"].ToString();
             }
-            data = crud.executeReader("SELECT COUNT(*) AS Outofstock FROM books WHERE isbn IN (SELECT DISTINCT isbn FROM activebooks) AND quantity IN(SELECT COUNT(*) AS quantity FROM activebooks GROUP BY isbn)");
-            if (data.HasRows)
-            {
-                data.Read();
-                outstock.InnerText = data["Outofstock"].ToString();
-            }
+            // data = crud.executeReader("SELECT COUNT(*) AS Outofstock FROM books WHERE isbn IN (SELECT DISTINCT isbn FROM activebooks) AND quantity IN(SELECT COUNT(*) AS quantity FROM activebooks GROUP BY isbn)");
+            // if (data.HasRows)
+            // {
+            //     data.Read();
+            //     outstock.InnerText = data["Outofstock"].ToString();
+            // }
         }
 
         private void fillId() {
@@ -99,8 +104,7 @@ namespace think.template
                 string query = "INSERT INTO books(bookname,author,price,quantity) ";
                 query += "VALUES('" + bookName.Text + "','" + author.Text + "','" + bookPrice.Text + "','"+bookQuantity.Text+"')";
                 bool res = crud.executeCommand(query);
-                string resText = res ? "Successfully added" : "Failed to add";
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", "alert('" + resText + "')", true);
+                string msg = res ? "New book added" : "Failed to add new book";
                 if (res)
                 {
                     bookName.Text = "";
@@ -110,7 +114,7 @@ namespace think.template
                     calculateTotalBooks();
                     fillGrid("SELECT * FROM books");
                     fillId();
-                }
+                } ScriptManager.RegisterStartupScript(updateBookPanel, updateBookPanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
                 addBook.Text = "Add";
                 addBook.Enabled = true;
             }
@@ -171,6 +175,7 @@ namespace think.template
                 string newData = String.Format("bookname='{0}',author='{1}',price='{2}',quantity='{3}'", updBookName.Text, updAuthor.Text, updBookPrice.Text, updBookQuantity.Text);
                 string query = "UPDATE books SET " + newData + " WHERE isbn=" + updateId.Text;
                 bool res = crud.executeCommand(query);
+                string msg = res ? "Book updated successfully" : "Failed to update book";
                 if (res)
                 {
                     calculateTotalBooks();
@@ -181,6 +186,7 @@ namespace think.template
                     updBookPrice.Text = "";
                     updBookQuantity.Text = "";
                 }
+                ScriptManager.RegisterStartupScript(updateBookPanel, updateBookPanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
                 updateBook.Enabled = true;
                 updateBook.Text = "Update";
             }

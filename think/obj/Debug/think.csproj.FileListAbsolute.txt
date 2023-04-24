@@ -10,13 +10,13 @@ D:\C01202306\asp.net\think new\think new\think\bin\think.dll
 D:\C01202306\asp.net\think new\think new\think\bin\think.pdb
 D:\C01202306\asp.net\think new\think new\think\obj\Debug\think.dll
 D:\C01202306\asp.net\think new\think new\think\obj\Debug\think.pdb
-I:\asp.net\think new\think\bin\think.dll
-I:\asp.net\think new\think\bin\think.pdb
-I:\asp.net\think new\think\obj\Debug\think.dll
-I:\asp.net\think new\think\obj\Debug\think.pdb
-I:\asp.net\think new\think\obj\Debug\think.csprojResolveAssemblyReference.cache
 D:\C01202306\asp.net\think new\think\bin\think.dll
 D:\C01202306\asp.net\think new\think\bin\think.pdb
 D:\C01202306\asp.net\think new\think\obj\Debug\think.csprojResolveAssemblyReference.cache
 D:\C01202306\asp.net\think new\think\obj\Debug\think.dll
 D:\C01202306\asp.net\think new\think\obj\Debug\think.pdb
+I:\asp.net\think new\think\bin\think.dll
+I:\asp.net\think new\think\bin\think.pdb
+I:\asp.net\think new\think\obj\Debug\think.dll
+I:\asp.net\think new\think\obj\Debug\think.pdb
+I:\asp.net\think new\think\obj\Debug\think.csprojResolveAssemblyReference.cache

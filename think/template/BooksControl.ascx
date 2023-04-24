@@ -35,7 +35,7 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <asp:UpdatePanel ID="allBookPanel" runat="server">
+        <asp:UpdatePanel ID="allBookPanel" class="tableControlWrap" runat="server">
             <ContentTemplate>
                 <div class="panelDataMiddleBlock">
                     <p>All books</p>

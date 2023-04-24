@@ -34,7 +34,8 @@ namespace think
                 this.command.ExecuteNonQuery();
                 return true;
             }
-            catch (SqlException) {
+            catch (SqlException)
+            {
                 return false;
             }
         }
@@ -42,7 +43,7 @@ namespace think
         public SqlDataReader executeReader(string query) {
             try
             {
-                this.command = new SqlCommand(query,this.connection);
+                this.command = new SqlCommand(query, this.connection);
                 this.reader = this.command.ExecuteReader();
             }
             catch (SqlException)
@@ -53,7 +54,8 @@ namespace think
         }
 
         public void fillGrid(string query,GridView view) {
-            try {
+            try
+            {
                 this.adapter = new SqlDataAdapter(query, this.connection);
                 DataSet data = new DataSet();
                 this.adapter.Fill(data);

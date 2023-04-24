@@ -66,6 +66,7 @@
     <Content Include="css\panel.css" />
     <Content Include="css\userpanel.css" />
     <Content Include="Global.asax" />
+    <Content Include="js\AdminPanel.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Home.js" />
@@ -87,6 +88,7 @@
     <Compile Include="api\userRegister.ashx.cs">
       <DependentUpon>userRegister.ashx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\FineCalculator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

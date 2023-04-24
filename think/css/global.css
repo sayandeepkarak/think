@@ -19,6 +19,7 @@ html {
   --white: #fff;
   --text-big: rgb(41, 44, 49);
   --error-border: #e33169;
+  --shadow: #cdcdcdc9;
 }
 
 :root::-webkit-scrollbar {
@@ -39,7 +40,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 100px 0px 0px;
+  padding: 0px 88px 0px 0px;
   border-bottom: 2px solid var(--border);
   position: sticky;
   top: 0;
@@ -52,6 +53,7 @@ header {
   display: grid;
   place-items: center;
   font-size: 1.8rem;
+  filter: drop-shadow(1px 1px 16px var(--shadow));
 }
 
 .themeBtn {
@@ -91,6 +93,7 @@ header {
 .homeImage {
   height: 420px;
   margin-bottom: 10vh;
+  transition: all 0.3s linear;
 }
 
 .homeBigText {
@@ -113,14 +116,14 @@ header {
   flex-direction: column;
   width: 300px;
   display: flex;
-  padding: 30px 32px;
+  padding: 35px 32px;
   justify-content: center;
   box-shadow: 10px 10px 0px 0px var(--theme), -10px -10px 0px 0px var(--border);
   align-items: center;
   gap: 15px;
 }
 
-.forms p {
+.formHead {
   font-size: 1.6rem;
   font-weight: 500;
   margin-bottom: 15px;
@@ -138,6 +141,30 @@ header {
 
 .formGroupBtn button {
   margin-top: 0;
+}
+
+.formError {
+  display: none;
+  font-size: 0.9rem;
+  margin-bottom: -10px;
+  color: var(--error-border);
+}
+
+.formHelpers {
+  font-size: 0.9rem;
+  color: var(--text-big);
+  text-align: center;
+  cursor: default;
+}
+
+.formHelpers p {
+  margin-bottom: 5px !important;
+}
+
+.formHelpers span {
+  cursor: pointer;
+  color: var(--theme);
+  font-weight: 500;
 }
 
 .inputs {
@@ -171,4 +198,50 @@ th,
 td {
   padding: 0.8rem 1.5rem !important;
   vertical-align: middle;
+}
+
+.alertArea {
+  position: absolute;
+  right: 30px;
+  margin-top: 24px;
+}
+
+.customAlert {
+  border-radius: 0 !important;
+  border: none !important;
+  filter: drop-shadow(1px 1px 16px var(--shadow));
+  background-color: white !important;
+  color: var(--theme);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+  padding-right: 1rem !important;
+}
+
+.alert-indicator {
+  height: 100%;
+  width: 5px;
+}
+
+.alert-indicator.ok {
+  background-color: var(--bs-success);
+}
+
+.alert-indicator.err {
+  background-color: var(--bs-danger);
+}
+
+.btn-close {
+  position: relative !important;
+  padding: 0;
+}
+
+.tableControlWrap {
+  filter: drop-shadow(1px 1px 16px var(--shadow));
+  background-color: var(--white);
+  padding: 0px 22px 20px;
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
 }

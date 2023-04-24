@@ -26,6 +26,7 @@ namespace think.template
             returnIssueDate.Text = "";
             retDate.Text = "";
             returnFine.Text = "";
+            fetchIssueBook.Enabled = false;
         }
 
         private void fillList(DropDownList list,SqlDataReader data,int nameIndex,int dataIndex) {
@@ -41,6 +42,11 @@ namespace think.template
             } 
         }
 
+        private void fillHistory(string query="SELECT operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history") {
+            InternalSqlCrud crud = new InternalSqlCrud();
+            crud.fillGrid(query, allHistory);
+        }
+
         private void fillGrid(string query) {
             InternalSqlCrud crud = new InternalSqlCrud();
             crud.fillGrid(query, allActiveBooks);
@@ -51,8 +57,11 @@ namespace think.template
             bookNames.Items.Clear();
             studentMobile.Items.Clear();
             returnMobiles.Items.Clear();
+            renewMobiles.Items.Clear();
             issueBookNames.Items.Add("Select a book");
             specificBooks.Items.Add("Select a book");
+            renewMobiles.Items.Add("Select a mobile");
+            renewBookNames.Items.Add("Select a book");
             bookNames.Items.Add("Select a book");
             studentMobile.Items.Add("Select a mobile");
             returnMobiles.Items.Add("Select a mobile");
@@ -61,16 +70,26 @@ namespace think.template
             SqlDataReader data = crud.executeReader("SELECT b.isbn,b.bookname FROM books b WHERE quantity<>(SELECT COUNT(*) AS quantity FROM activebooks a WHERE a.isbn=b.isbn)");
             fillList(bookNames, data, 1, 0);
 
-            data = crud.executeReader("SELECT id,mobile FROM users WHERE userType='user'");
-            fillList(studentMobile, data, 1, 0);
-            issuedate.Text = DateTime.Now.AddDays(5).ToString("yyyy-MM-dd");
-
             data = crud.executeReader("SELECT distinct a.isbn,b.bookname FROM books b,activebooks a WHERE b.isbn=a.isbn");
             fillList(issueBookNames, data, 1, 0);
 
+            data = crud.executeReader("SELECT id,mobile FROM users WHERE userType='user'");
+            fillList(studentMobile, data, 1, 0);
+
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+            issuedate.Attributes["min"] = today;
+            issuedate.Attributes["max"] = today;
+            issuedate.Text = today;
+            returndate.Attributes["min"] = today; 
+            returndate.Attributes["max"] = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+            extendedDate.Attributes["min"] = today;
+            extendedDate.Attributes["max"] = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+
+            data = crud.executeReader("SELECT distinct u.id,u.mobile FROM users u,activebooks a WHERE u.id=a.studentid");
+            fillList(renewMobiles, data, 1, 0);
+
             data = crud.executeReader("SELECT distinct u.id,u.mobile FROM users u,activebooks a WHERE u.id=a.studentid");
             fillList(returnMobiles, data, 1, 0);
-
 
             specificBooks.Items.Clear();
             specificBooks.Items.Add("Select a book");
@@ -85,7 +104,8 @@ namespace think.template
             if (!this.IsPostBack)
             {
                 fillInputs();
-                fillGrid(this.gridQuery);
+                fillGrid(this.gridQuery); 
+                fillHistory();
             }
         }
 
@@ -103,14 +123,16 @@ namespace think.template
                 string query = "INSERT INTO activebooks(isbn,studentid,issuedate,returndate,fine) ";
                 query += String.Format("VALUES ('{0}','{1}','{2}','{3}','{4}')", bookNames.SelectedValue, studentMobile.SelectedValue, issuedate.Text, returndate.Text, "0");
                 bool res = crud.executeCommand(query);
-
+                string msg = res ? "Book issued successfully" : "Failed to issue book";
                 if (res) {
                     bookNames.ClearSelection();
                     studentMobile.ClearSelection();
                     returndate.Text = "";
                     fillGrid(this.gridQuery);
                     fillInputs();
+                    fillHistory();
                 }
+                ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
             }
         }
 
@@ -155,17 +177,21 @@ namespace think.template
             }
         }
 
+        protected void fillIssueBookNames(DropDownList list,string userId) {
+            list.Enabled = true;
+            InternalSqlCrud crud = new InternalSqlCrud();
+            string query = "SELECT a.id,b.bookname FROM activebooks a,books b,users u WHERE a.studentid=u.id AND a.isbn=b.isbn AND u.id=" + userId;
+            SqlDataReader data = crud.executeReader(query);
+            list.Items.Add("Select a book");
+            fillList(list, data, 1, 0);
+        }
+
         protected void returnMobiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             specificBooks.Items.Clear();
             if (returnMobiles.SelectedIndex != 0)
             {
-                specificBooks.Enabled = true;
-                InternalSqlCrud crud = new InternalSqlCrud();
-                string query = "SELECT a.id,b.bookname FROM activebooks a,books b,users u WHERE a.studentid=u.id AND a.isbn=b.isbn AND u.id=" + returnMobiles.SelectedValue;
-                SqlDataReader data = crud.executeReader(query);
-                specificBooks.Items.Add("Select a book");
-                fillList(specificBooks, data, 1, 0);
+                fillIssueBookNames(specificBooks, returnMobiles.SelectedValue);
             }
             else
             {
@@ -173,14 +199,97 @@ namespace think.template
             }
         }
 
+        protected void renewMobiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            renewBookNames.Items.Clear();
+            if (renewMobiles.SelectedIndex != 0)
+            {
+                fillIssueBookNames(renewBookNames, renewMobiles.SelectedValue);
+            }
+            else {
+                resetRenewArea();
+            }
+        }
+
+        protected void resetRenewArea() {
+            renewMobiles.ClearSelection();
+            renewBookNames.Items.Clear();
+            renewBookNames.Items.Add("Select a book");
+            renewBookNames.Enabled = false;
+            clearRenewDate();
+        }
+
         protected void returnBtn_Click(object sender, EventArgs e) 
         {
             string id = returnBtn.Attributes["data-issue-id"];
             InternalSqlCrud crud = new InternalSqlCrud();
             bool res = crud.executeCommand("DELETE FROM activebooks WHERE id=" + id);
-            clearReturnArea();
-            fillInputs();
-            fillGrid(this.gridQuery);
+            string msg = res ? "Book returned successfully" : "Failed to return book";
+            if (res)
+            {
+                clearReturnArea();
+                fillInputs();
+                fillGrid(this.gridQuery);
+                fillHistory();
+            }
+            ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(" + res + ",'" + msg + "');", true);
         }
+
+        protected void renewBookNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (renewBookNames.SelectedIndex != 0)
+            {
+                InternalSqlCrud crud = new InternalSqlCrud();
+                SqlDataReader data = crud.executeReader("SELECT returndate FROM activebooks WHERE id=" + renewBookNames.SelectedValue);
+                if (data.HasRows)
+                {
+                    data.Read();
+                    extendedDate.Enabled = true;
+                    extendedDate.Text = data[0].ToString();
+                    renewBook.Enabled = true;
+                }
+            }
+            else {
+                clearRenewDate();
+            }
+        }
+
+        protected void clearRenewDate()
+        {
+            extendedDate.Text = "";
+            extendedDate.Enabled = false;
+            renewBook.Enabled = false;
+        }
+
+        protected void renewBook_Click(object sender, EventArgs e)
+        {
+            InternalSqlCrud crud = new InternalSqlCrud();
+            bool res = crud.executeCommand("UPDATE activebooks SET returndate='" + extendedDate.Text + "' WHERE id=" + renewBookNames.SelectedValue);
+            string msg = res ? "Book renewed successfully" : "Failed to renew book";
+            if (res)
+            {
+                resetRenewArea();
+                fillGrid(this.gridQuery);
+                fillHistory();
+            }
+            ScriptManager.RegisterStartupScript(renewIssuePanel, renewIssuePanel.GetType(), "message", "showAlert(true,'Successfully renew book');", true);
+        }
+
+        protected void specificBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fetchIssueBook.Enabled = specificBooks.SelectedIndex > 0;
+        }
+
+        protected void historyFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historyFilter.SelectedIndex != 0)
+            {
+                fillHistory("SELECT operation Action,isbn BookId,studentid MemberId,hit_time Time FROM history WHERE operation='" + historyFilter.SelectedValue + "'");
+            }
+            else {
+                fillHistory();
+            }
+        }
+
     }
 }

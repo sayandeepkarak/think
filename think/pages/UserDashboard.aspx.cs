@@ -72,7 +72,14 @@ namespace think.pages
             InternalSqlCrud crud = new InternalSqlCrud();
             SqlDataReader data = crud.executeReader(this.gridQuery);
             if (data.HasRows) {
-                int j=1;
+                myBooksTable.Rows.Clear();
+                TableHeaderRow headerRow = new TableHeaderRow();
+                foreach (string e in new string[] { "Book","IssueDate","ReturnDate","Fine" }) {
+                    TableHeaderCell cell = new TableHeaderCell();
+                    cell.Text = e;
+                    headerRow.Cells.Add(cell);
+                }
+                myBooksTable.Rows.Add(headerRow);
                 while (data.Read()) {
                     TableRow row = new TableRow();
                     for (int i = 0; i <= 2; i++)
@@ -96,9 +103,8 @@ namespace think.pages
                         btnCell.Text= fine;
                     }
                     row.Cells.Add(btnCell);
-                    myBooksTable.Rows.RemoveAt(j);
-                    myBooksTable.Rows.AddAt(j, row);
-                    j++;
+                    myBooksTable.Rows.Add(row);
+
                 }
             }
         }
@@ -107,7 +113,7 @@ namespace think.pages
             payFineBtn.Enabled = false;
             string issueId = payFineBtn.Attributes["issue-id"];
             InternalSqlCrud crud = new InternalSqlCrud();
-            crud.executeCommand("UPDATE activebooks SET fine=0 WHERE id=" + issueId);
+            crud.executeCommand("UPDATE activebooks SET fine=0,returndate=CONVERT(varchar(MAX), GETDATE(), 23) WHERE id=" + issueId);
             loadMyBooks();
         }
 
@@ -121,6 +127,7 @@ namespace think.pages
                 
                 if (data.HasRows)
                 {
+                    FineCalculator.calculateFine(false, userId);
                     this.gridQuery += " AND a.studentid=" + userId;
                     data.Read();
                     userName.InnerText = data["fullname"].ToString();
@@ -196,6 +203,7 @@ namespace think.pages
         protected void clearBtn_Click(object sender, EventArgs e)
         {
             fillBooks("SELECT * FROM books");
+            bookNameSearch.Text = "";
         }
 
     }

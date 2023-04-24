@@ -3,6 +3,8 @@ const openSignupBtn = document.getElementById("openSignup");
 const loginForm = document.getElementById("login");
 const signupForm = document.getElementById("signup");
 const homeImage = document.getElementById("homeImage");
+const openRegLink = document.getElementById("openRegLink");
+const openLogLink = document.getElementById("openLogLink");
 
 let openLogin = false;
 let openSignup = false;
@@ -22,17 +24,22 @@ function validateFields(condition, el) {
   return condition;
 }
 
-openSignupBtn.onclick = () => {
+const openSignUpForm = () => {
   openLogin = false;
   openSignup = !openSignup;
   toggleForm(openSignup, signupForm, loginForm);
 };
 
-openLoginBtn.onclick = () => {
+const openLoginForm = () => {
   openSignup = false;
   openLogin = !openLogin;
   toggleForm(openLogin, loginForm, signupForm);
 };
+
+openRegLink.onclick = () => openSignUpForm();
+openLogLink.onclick = () => openLoginForm();
+openSignupBtn.onclick = () => openSignUpForm();
+openLoginBtn.onclick = () => openLoginForm();
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -48,6 +55,10 @@ loginForm.addEventListener("submit", async (e) => {
     document.getElementById("loginPassword")
   );
   if (isValid) {
+    const loginBtn = document.getElementById("loginBtn");
+    loginBtn.disabled = true;
+    loginBtn.innerText = "Login...";
+
     try {
       const res = await fetch("/api/login.ashx", {
         method: "POST",
@@ -56,14 +67,20 @@ loginForm.addEventListener("submit", async (e) => {
         },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
       });
+
       if (res.ok) {
         const data = await res.json();
         window.location.href =
           data.userType == "admin" ? "/AdminPanel" : "/UserPanel";
         loginForm.reset();
       } else if (res.status == 404) {
-        alert("Invalid credential");
+        const logErr = document.getElementById("loginError");
+        logErr.innerText = "Invalid credentials";
+        logErr.style.display = "block";
       }
+
+      loginBtn.disabled = false;
+      loginBtn.innerText = "Login";
     } catch (error) {
       console.log(error);
     }
@@ -94,6 +111,9 @@ signupForm.addEventListener("submit", async (e) => {
     document.getElementById("confirmPass")
   );
   if (isValid) {
+    const registerBtn = document.getElementById("registerBtn");
+    registerBtn.disabled = true;
+    registerBtn.innerText = "Register...";
     try {
       const res = await fetch("/api/userRegister.ashx", {
         method: "POST",
@@ -103,12 +123,14 @@ signupForm.addEventListener("submit", async (e) => {
         body: JSON.stringify({ fullname, email, mobile, password }),
       });
       if (res.ok) {
-        const { status, message } = await res.json();
+        await res.json();
+        signupForm.reset();
         window.location.href = "/UserPanel";
       } else if (res.status == 409) {
         alert(res.statusText);
       }
-      signupForm.reset();
+      registerBtn.disabled = true;
+      registerBtn.innerText = "Register...";
     } catch (error) {
       console.log(error);
     }
