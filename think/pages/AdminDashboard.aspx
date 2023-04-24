@@ -30,16 +30,22 @@
                 <button class="nav-link side-tabs active" id="v-pills-books-tab" data-bs-toggle="pill"
                   data-bs-target="#v-pills-books" type="button" role="tab" aria-controls="v-pills-books"
                   aria-selected="true">
+                  <img src="/assets/books.png" id="booksIcon" class="active-img" alt="x" />
+                  <img src="/assets/books-white.png" id="booksIconWhite" class="inactive-img" alt="x" />
                   Books
                 </button>
                 <button class="nav-link side-tabs" id="v-pills-issuereturn-tab" data-bs-toggle="pill"
                   data-bs-target="#v-pills-issuereturn" type="button" role="tab" aria-controls="v-pills-issuereturn"
                   aria-selected="false">
+                  <img src="/assets/issue.png" id="issueIcon" class="active-img" alt="x" />
+                  <img src="/assets/issue-white.png" id="issueIconWhite" class="inactive-img" alt="x" />
                   Borrow
                 </button>
                 <button class="nav-link side-tabs" id="v-pills-users-tab" data-bs-toggle="pill"
                   data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users"
                   aria-selected="false">
+                  <img src="/assets/members.png" id="userIcon" class="active-img" alt="x" />
+                  <img src="/assets/user-white.png" id="userIconWhite" class="inactive-img" alt="x" />
                   Members
                 </button>
               </div>

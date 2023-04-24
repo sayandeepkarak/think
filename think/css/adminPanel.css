@@ -73,9 +73,7 @@ p {
 }
 
 .overviewCard:hover {
-  /* box-shadow: ; */
-  box-shadow: inset 0px -10px 0px 0px var(--theme),
-    inset 0px 140px 0px 0px var(--theme);
+  box-shadow: inset 0px -140px 0px 0px var(--theme);
 }
 
 .overviewCard:hover h1 {
