@@ -2,17 +2,22 @@
 const openSignupBtn = document.getElementById("openSignup");
 const loginForm = document.getElementById("login");
 const signupForm = document.getElementById("signup");
+const recoverForm = document.getElementById("recoverPasswordForm");
 const homeImage = document.getElementById("homeImage");
 const openRegLink = document.getElementById("openRegLink");
 const openLogLink = document.getElementById("openLogLink");
+const opeForgotLink = document.getElementById("forgotLink");
 
 let openLogin = false;
 let openSignup = false;
+let openRecover = false;
 
-function toggleForm(mainValue, mainForm, otherForm) {
+function toggleForm(mainValue, mainForm, ...otherForm) {
   homeImage.style.display = mainValue ? "none" : "block";
   if (mainValue) {
-    otherForm.style.display = "none";
+    otherForm.forEach((e) => {
+      e.style.display = "none";
+    });
   }
   mainForm.style.display = mainValue ? "flex" : "none";
 }
@@ -26,14 +31,26 @@ function validateFields(condition, el) {
 
 const openSignUpForm = () => {
   openLogin = false;
+  openRecover = false;
   openSignup = !openSignup;
-  toggleForm(openSignup, signupForm, loginForm);
+  toggleForm(openSignup, signupForm, loginForm, recoverForm);
 };
 
 const openLoginForm = () => {
   openSignup = false;
+  openRecover = false;
   openLogin = !openLogin;
-  toggleForm(openLogin, loginForm, signupForm);
+  toggleForm(openLogin, loginForm, signupForm, recoverForm);
+};
+opeForgotLink.onclick = () => {
+  openSignup = false;
+  openLogin = false;
+  openRecover = !openRecover;
+  const errorText = document.getElementById("recoverError");
+  recoverForm.reset();
+  errorText.style.display = "none";
+  errorText.innerText = "";
+  toggleForm(openRecover, recoverForm, signupForm, loginForm);
 };
 
 openRegLink.onclick = () => openSignUpForm();
@@ -131,6 +148,58 @@ signupForm.addEventListener("submit", async (e) => {
       }
       registerBtn.disabled = true;
       registerBtn.innerText = "Register...";
+    } catch (error) {
+      console.log(error);
+    }
+  }
+});
+
+recoverForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errorText = document.getElementById("recoverError");
+  errorText.style.display = "none";
+  errorText.innerText = "";
+
+  const formData = new FormData(recoverForm);
+  const { recoverEmail } = Object.fromEntries(formData);
+
+  let isValid = true;
+  isValid &= validateFields(
+    recoverEmail !== "",
+    document.getElementById("recoverEmail")
+  );
+
+  if (isValid) {
+    const recoverButton = document.getElementById("recoverBtn");
+    recoverButton.disabled = true;
+    recoverButton.innerText = "Finding...";
+    try {
+      const res = await fetch("/api/recoverPassword.ashx", {
+        method: "POST",
+        headers: {
+          ContentType: "application/json",
+        },
+        body: JSON.stringify({ email: recoverEmail }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        showAlert(
+          true,
+          `It's great to tell you dear ${data?.message}, your password is sent to your mail address`
+        );
+        recoverForm.reset();
+        openRecover = !openRecover;
+        toggleForm(openRecover, recoverForm, signupForm, loginForm);
+      } else if ((res.status = 404)) {
+        errorText.innerText = "Email id doesn't exist";
+        errorText.style.display = "block";
+      } else if ((res.status = 500)) {
+        showAlert(false, "Please try again after sometimes");
+      }
+
+      recoverButton.disabled = true;
+      recoverButton.innerText = "Get Password";
     } catch (error) {
       console.log(error);
     }

@@ -56,6 +56,9 @@ body {
 }
 
 .overviewCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 140px;
   min-width: 20%;
   padding: 20px 28px;
@@ -67,18 +70,46 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.hover-overview-img {
+  opacity: 0;
+  display: none;
+}
+
 .overviewCard h1,
-p {
+.overviewCard p {
   color: var(--theme);
+}
+
+.overviewCard img {
+  height: 56px;
+}
+
+.overviewCard img,
+.overviewCard p,
+.overviewCard h1 {
+  transition: all 0.4s ease-in-out;
 }
 
 .overviewCard:hover {
   box-shadow: inset 0px -140px 0px 0px var(--theme);
+  flex-direction: row-reverse;
 }
 
-.overviewCard:hover h1 {
-  color: var(--white);
+.overviewCard:hover h1,
+.overviewCard:hover p {
+  text-align: right;
 }
+
+.overviewCard:hover .hover-overview-img {
+  display: block;
+  opacity: 1;
+}
+.overviewCard:hover .default-overview-img {
+  opacity: 0;
+  display: none;
+}
+
+.overviewCard:hover h1,
 .overviewCard:hover p {
   color: var(--white);
 }
@@ -144,4 +175,8 @@ p {
 
 .cardBottomText {
   color: var(--text-big);
+}
+
+#memberNameSearch {
+  margin-right: 10px;
 }

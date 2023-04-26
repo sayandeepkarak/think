@@ -24,23 +24,16 @@ namespace think.pages
             Response.Redirect("/");
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "admin")
+        protected void loadMembers(string otherCondition="") {
+            InternalSqlCrud crud = new InternalSqlCrud();
+            string query = "SELECT id,fullname,email,mobile FROM users WHERE userType='user' " + otherCondition;
+            SqlDataReader data = crud.executeReader(query);
+            if (data.HasRows)
             {
-                string userId = Request.Cookies["userId"].Value;
-                InternalSqlCrud crud = new InternalSqlCrud();
-                SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
-                if (data.HasRows)
+                string cards = "";
+                while (data.Read())
                 {
-                    FineCalculator.calculateFine(true, userId);
-                    data = crud.executeReader("SELECT id,fullname,email,mobile FROM users WHERE userType='user'");
-                    if (data.HasRows)
-                    {
-                        string cards = "";
-                        while (data.Read())
-                        {
-                            cards += String.Format(@"
+                    cards += String.Format(@"
                                          <div class='userCards'>
                                              <div class='userCardTop'>
                                                 <p class='userCardLogo'>#think-{0}</p>
@@ -54,9 +47,25 @@ namespace think.pages
                                              </div>
                                          </div>
                                       ", data["id"].ToString(), data["fullname"].ToString(), data["email"].ToString(), data["mobile"]);
-                        }
-                        userCardsArea.InnerHtml = cards;
-                    }
+                }
+                userCardsArea.InnerHtml = cards;
+            }
+            else {
+                userCardsArea.InnerHtml = "<p>No user found</p>";
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Request.Cookies["userId"] != null && Request.Cookies["userType"] != null && Request.Cookies["userType"].Value == "admin")
+            {
+                string userId = Request.Cookies["userId"].Value;
+                InternalSqlCrud crud = new InternalSqlCrud();
+                SqlDataReader data = crud.executeReader("SELECT * FROM users WHERE id=" + userId + " AND userType='admin'");
+                if (data.HasRows)
+                {
+                    FineCalculator.calculateFine(true, userId);
+                    loadMembers();
                 }
                 else
                 {
@@ -68,6 +77,17 @@ namespace think.pages
                 clearCookie();
             }
             
+        }
+
+        protected void memberSearchBtn_Click(object sender, EventArgs e)
+        {
+            loadMembers("AND fullname LIKE '%" + memberNameSearch.Text + "%'");
+        }
+
+        protected void clearBtn_Click(object sender, EventArgs e)
+        {
+            loadMembers();
+            memberNameSearch.Text = "";
         }
     }
 }

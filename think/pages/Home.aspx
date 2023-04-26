@@ -9,6 +9,7 @@
     <title>think</title>
     <link href="/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/css/home.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -22,9 +23,7 @@
         <p class="homeBigText">We are good just ask</p>
         <p class="homeBigText">our moms</p>
         <p class="homeSmallText">There is no one friend as loyal as book</p>
-        <button id="openSignup" class="themeBtn">
-          Register as a member
-        </button>
+        <button id="openSignup" class="themeBtn">Register as a member</button>
       </div>
       <div class="homeChilds homeRight">
         <img src="/assets/home.png" alt="Home" id="homeImage" class="homeImage" loading="lazy" />
@@ -37,7 +36,7 @@
             autocomplete="false" />
           <button type="submit" id="loginBtn" class="themeBtn">Login</button>
           <div class="formHelpers">
-            <p><span>Forgot Password?</span></p>
+            <p><span id="forgotLink">Forgot Password?</span></p>
             <p>Not a member? <span id="openRegLink">Register here</span></p>
           </div>
         </form>
@@ -51,15 +50,29 @@
             autocomplete="false" />
           <input type="password" name="confirmPass" id="confirmPass" class="inputs" placeholder="Confirm Password"
             autocomplete="false" />
-          <button type="submit" id="registerBtn" class="themeBtn">Register</button>
+          <button type="submit" id="registerBtn" class="themeBtn">
+            Register
+          </button>
           <div class="formHelpers">
             <p>Already a member? <span id="openLogLink">Login here</span></p>
           </div>
         </form>
+
+        <form id="recoverPasswordForm" class="forms">
+          <p class="formHead">Recover Password</p>
+          <span id="recoverError" class="formError"></span>
+          <input type="email" name="recoverEmail" id="recoverEmail" class="inputs" placeholder="Enter your email" />
+          <button type="submit" id="recoverBtn" class="themeBtn">
+            Get Password
+          </button>
+        </form>
       </div>
+      <div id="alertArea" class="alertArea"></div>
     </section>
 
     <script src="/js/Home.js" type="text/javascript"></script>
+    <script src="/js/Global.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
 
   </html>
