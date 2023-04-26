@@ -101,7 +101,8 @@
             <section id="myBooks" class="sections">
               <div class="sectionTop">
                 <p class="sectionTopText">My Books</p>
-                <asp:DropDownList ID="myBookFilter" runat="server" CssClass="inputs" AutoPostBack="True">
+                <asp:DropDownList ID="myBookFilter" runat="server" CssClass="inputs" 
+                      AutoPostBack="True" onselectedindexchanged="myBookFilter_SelectedIndexChanged">
                   <asp:ListItem>All Books</asp:ListItem>
                   <asp:ListItem>Billed</asp:ListItem>
                   <asp:ListItem>Unbilled</asp:ListItem>

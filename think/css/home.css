@@ -6,6 +6,15 @@
   margin-bottom: 10px;
 }
 
+#recoverPasswordForm {
+  width: 420px;
+  padding: 52px 46px;
+}
+
+#recoverError {
+  margin-bottom: 10px;
+}
+
 #login {
   width: 380px;
   padding: 45px 32px;

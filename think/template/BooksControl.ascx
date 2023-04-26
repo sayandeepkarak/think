@@ -17,20 +17,36 @@
                 </div>    
                 <div class="overviewCardsArea">
                     <div class="overviewCard">
-                        <h1 id="totalbooks" runat="server"></h1>
-                        <p>Total</p>
+                        <div>
+                            <h1 id="totalbooks" runat="server"></h1>
+                            <p>Total</p>
+                        </div>
+                        <img src="/assets/types.png" alt="x" class="default-overview-img" />
+                        <img src="/assets/type-white.png" alt="x" class="hover-overview-img" />
                     </div>
                     <div class="overviewCard">
-                        <h1 id="quantityBooks" runat="server"></h1>
-                        <p>Quantity</p>
+                        <div>
+                            <h1 id="quantityBooks" runat="server"></h1>
+                            <p>Quantity</p>
+                        </div>
+                        <img src="/assets/quantity.png" alt="x" class="default-overview-img" />
+                        <img src="/assets/quantity-white.png" alt="x" class="hover-overview-img" />
                     </div>
                     <div class="overviewCard">
-                        <h1 id="totalIssue" runat="server"></h1>
-                        <p>Issued</p>
+                        <div>
+                            <h1 id="totalIssue" runat="server"></h1>
+                            <p>Issued</p>
+                        </div>
+                        <img src="/assets/allissued.png" alt="x" class="default-overview-img" />
+                        <img src="/assets/issuedover-white.png" alt="x" class="hover-overview-img" />
                     </div>
                     <div class="overviewCard">
-                        <h1 id="outstock" runat="server"></h1>
-                        <p>Out Of Stock</p>
+                        <div>
+                            <h1 id="outstock" runat="server"></h1>
+                            <p>Out Of Stock</p>
+                        </div>
+                        <img src="/assets/outofstock.png" alt="x" class="default-overview-img" />
+                        <img src="/assets/outst-white.png" alt="x" class="hover-overview-img" />
                     </div>
                 </div>
             </ContentTemplate>

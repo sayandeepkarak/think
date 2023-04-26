@@ -67,6 +67,33 @@ namespace think.pages {
         protected global::System.Web.UI.UpdatePanel userCardPanel;
         
         /// <summary>
+        /// memberNameSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox memberNameSearch;
+        
+        /// <summary>
+        /// memberSearchBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button memberSearchBtn;
+        
+        /// <summary>
+        /// clearBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button clearBtn;
+        
+        /// <summary>
         /// userCardsArea control.
         /// </summary>
         /// <remarks>

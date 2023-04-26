@@ -68,9 +68,9 @@ namespace think.pages
             booksCardArea.InnerHtml = cards;
         }
 
-        protected void loadMyBooks() {
+        protected void loadMyBooks(string condition="") {
             InternalSqlCrud crud = new InternalSqlCrud();
-            SqlDataReader data = crud.executeReader(this.gridQuery);
+            SqlDataReader data = crud.executeReader(this.gridQuery + condition);
             if (data.HasRows) {
                 myBooksTable.Rows.Clear();
                 TableHeaderRow headerRow = new TableHeaderRow();
@@ -204,6 +204,21 @@ namespace think.pages
         {
             fillBooks("SELECT * FROM books");
             bookNameSearch.Text = "";
+        }
+
+        protected void myBookFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = myBookFilter.SelectedIndex;
+            if (index == 0) {
+                loadMyBooks();
+            }
+            if (index == 1) {
+                loadMyBooks(" AND fine<>'0'");
+            }
+            if (index == 2)
+            {
+                loadMyBooks(" AND fine='0'");
+            }
         }
 
     }

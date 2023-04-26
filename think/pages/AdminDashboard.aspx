@@ -62,8 +62,20 @@
               </div>
               <div class="tab-pane fade overflow-auto h-100 tabContent" id="v-pills-users" role="tabpanel"
                 aria-labelledby="v-pills-users-tab">
-                <asp:UpdatePanel ID="userCardPanel" runat='server'>
+                <asp:UpdatePanel ID="userCardPanel" runat="server">
                   <ContentTemplate>
+                    <div class="panelDataMiddleBlock">
+                      <p>All members</p>
+                      <div>
+                        <asp:TextBox ID="memberNameSearch" runat="server" CssClass="inputs"
+                          placeholder="Enter member name">
+                        </asp:TextBox>
+                        <asp:Button ID="memberSearchBtn" runat="server" Text="Find" CssClass="themeBtn"
+                          onclick="memberSearchBtn_Click" />
+                        <asp:Button ID="clearBtn" runat="server" Text="Clear" CssClass="themeBtn"
+                          onclick="clearBtn_Click" />
+                      </div>
+                    </div>
                     <div ID="userCardsArea" runat="server" class="cardsWrapper"></div>
                   </ContentTemplate>
                 </asp:UpdatePanel>
@@ -71,10 +83,9 @@
             </div>
             <div id="alertArea" class="alertArea"></div>
           </div>
-
         </form>
         <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-        <script src="/js/AdminPanel.js" type="text/javascript"></script>
+        <script src="/js/Global.js" type="text/javascript"></script>
       </body>
 
       </html>
