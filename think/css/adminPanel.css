@@ -81,7 +81,7 @@ body {
 }
 
 .overviewCard img {
-  height: 56px;
+  height: 42px;
 }
 
 .overviewCard img,
@@ -92,12 +92,6 @@ body {
 
 .overviewCard:hover {
   box-shadow: inset 0px -140px 0px 0px var(--theme);
-  flex-direction: row-reverse;
-}
-
-.overviewCard:hover h1,
-.overviewCard:hover p {
-  text-align: right;
 }
 
 .overviewCard:hover .hover-overview-img {
