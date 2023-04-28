@@ -39,7 +39,7 @@ namespace think.api
                     dataReader = crud.executeReader("SELECT id FROM users WHERE email='" + data.email + "'");
                     message = result ? "Register Success" : "Internal server error";
                     status = result ? "200" : "500";
-
+                    dataReader.Read();
                     HttpCookie cookie1 = new HttpCookie("userId", dataReader["id"].ToString());
                     HttpCookie cookie2 = new HttpCookie("userType", "user");
                     cookie1.Expires = DateTime.Now.AddMonths(1);
