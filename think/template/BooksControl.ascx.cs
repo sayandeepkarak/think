@@ -153,6 +153,14 @@ namespace think.template
             }
         }
 
+        protected void clearUpdateBook() {
+            updateId.ClearSelection();
+            updBookName.Text = "";
+            updAuthor.Text = "";
+            updBookPrice.Text = "";
+            updBookQuantity.Text = "";
+        }
+
         protected void updateBook_Click(object sender, EventArgs e)
         {
             Validation validator = new Validation();
@@ -164,26 +172,41 @@ namespace think.template
             validator.validateField(updBookQuantity.Text.Length > 0,updBookQuantity);
 
             if(validator.isOk()){
-                updateBook.Enabled = false;
-                updateBook.Text = "Updating ...";
                 InternalSqlCrud crud = new InternalSqlCrud();
-                string newData = String.Format("bookname='{0}',author='{1}',price='{2}',quantity='{3}'", updBookName.Text, updAuthor.Text, updBookPrice.Text, updBookQuantity.Text);
-                string query = "UPDATE books SET " + newData + " WHERE isbn=" + updateId.Text;
-                bool res = crud.executeCommand(query);
-                string msg = res ? "Book updated successfully" : "Failed to update book";
-                if (res)
-                {
-                    calculateTotalBooks();
-                    fillGrid("SELECT * FROM books");
-                    updateId.ClearSelection();
-                    updBookName.Text = "";
-                    updAuthor.Text = "";
-                    updBookPrice.Text = "";
-                    updBookQuantity.Text = "";
+                string query = "SELECT COUNT(*) AS issued FROM activebooks WHERE isbn='" + updateId.Text + "'";
+                SqlDataReader data = crud.executeReader(query);
+                bool isValidUpdate = true;
+
+                if (data.HasRows) {
+                    data.Read();
+                    if (int.Parse(updBookQuantity.Text) < Convert.ToInt32(data[0]))
+                    {
+                        isValidUpdate = false;
+                    }
                 }
-                Validation.alertInJs(updateBookPanel, res, msg);
-                updateBook.Enabled = true;
-                updateBook.Text = "Update";
+                
+                if (isValidUpdate)
+                {
+                    updateBook.Enabled = false;
+                    updateBook.Text = "Updating ...";
+                    string newData = String.Format("bookname='{0}',author='{1}',price='{2}',quantity='{3}'", updBookName.Text, updAuthor.Text, updBookPrice.Text, updBookQuantity.Text);
+                    query = "UPDATE books SET " + newData + " WHERE isbn=" + updateId.Text;
+                    bool res = crud.executeCommand(query);
+                    string msg = res ? "Book updated successfully" : "Failed to update book";
+                    if (res)
+                    {
+                        calculateTotalBooks();
+                        fillGrid("SELECT * FROM books");
+                        clearUpdateBook();
+                    }
+                    Validation.alertInJs(updateBookPanel, res, msg);
+                    updateBook.Enabled = true;
+                    updateBook.Text = "Update";
+                }
+                else {
+                    clearUpdateBook();
+                    Validation.alertInJs(updateBookPanel, false, "All books are issued");
+                }
             }
         }
     }

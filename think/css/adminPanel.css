@@ -60,7 +60,7 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 140px;
-  min-width: 20%;
+  width: 245px;
   padding: 20px 28px;
   cursor: pointer;
   box-shadow: inset 0px -10px 0px 0px var(--theme);
@@ -81,7 +81,7 @@ body {
 }
 
 .overviewCard img {
-  height: 42px;
+  height: 36px;
 }
 
 .overviewCard img,

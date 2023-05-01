@@ -10,6 +10,9 @@
     <link href="/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/css/userpanel.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/global.media.css" rel="stylesheet" type="text/css" />
+    <link href="/css/normalpage.media.css" rel="stylesheet" type="text/css" />
+    <link href="/css/user.media.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -83,12 +86,15 @@
             <section id="allBooks" class="sections">
               <div class="sectionTop">
                 <p class="sectionTopText">All Books</p>
-                <div>
+                <div id="allBooksSearchArea" class="d-flex flex-wrap gap-3">
                   <asp:TextBox ID="bookNameSearch" runat="server" CssClass="inputs" placeholder="Enter book name">
                   </asp:TextBox>
-                  <asp:Button ID="bookSearchBtn" runat="server" Text="Find" CssClass="themeBtn"
-                    onclick="bookSearchBtn_Click" />
-                  <asp:Button ID="clearBtn" runat="server" Text="Clear" CssClass="themeBtn" onclick="clearBtn_Click" />
+                  <div>
+                    <asp:Button ID="bookSearchBtn" runat="server" Text="Find" CssClass="themeBtn"
+                      onclick="bookSearchBtn_Click" />
+                    <asp:Button ID="clearBtn" runat="server" Text="Clear" CssClass="themeBtn"
+                      onclick="clearBtn_Click" />
+                  </div>
                 </div>
               </div>
               <div id="booksCardArea" class="bookDataArea cardScroller" runat="server"></div>
@@ -101,14 +107,14 @@
             <section id="myBooks" class="sections">
               <div class="sectionTop">
                 <p class="sectionTopText">My Books</p>
-                <asp:DropDownList ID="myBookFilter" runat="server" CssClass="inputs" 
-                      AutoPostBack="True" onselectedindexchanged="myBookFilter_SelectedIndexChanged">
+                <asp:DropDownList ID="myBookFilter" runat="server" CssClass="inputs" AutoPostBack="True"
+                  onselectedindexchanged="myBookFilter_SelectedIndexChanged">
                   <asp:ListItem>All Books</asp:ListItem>
                   <asp:ListItem>Billed</asp:ListItem>
                   <asp:ListItem>Unbilled</asp:ListItem>
                 </asp:DropDownList>
               </div>
-              <div class="bookDataArea">
+              <div class="w-100 overflow-scroll">
                 <asp:Table id="myBooksTable" runat="server" CssClass="table table-striped table-hover">
                   <asp:TableHeaderRow runat="server">
                     <asp:TableHeaderCell Text="Book" />

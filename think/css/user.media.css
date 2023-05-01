@@ -1,0 +1,34 @@
+@media screen and (max-width: 1024px) {
+  .scrollspy-example::-webkit-scrollbar {
+    display: none;
+  }
+  .sections {
+    padding: 0px 45px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #navbar-example2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sections {
+    padding: 15px 30px;
+    height: auto;
+  }
+
+  .sectionTop {
+    gap: 10px;
+  }
+
+  .sectionTop .inputs {
+    margin-right: 0;
+  }
+
+  #bookNameSearch,
+  #allBooksSearchArea {
+    width: 100%;
+  }
+}
