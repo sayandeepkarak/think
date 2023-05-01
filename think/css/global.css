@@ -45,6 +45,7 @@ header {
   border-bottom: 2px solid var(--border);
   position: sticky;
   top: 0;
+  background-color: var(--white);
 }
 
 .logo {

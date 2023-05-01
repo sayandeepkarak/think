@@ -10,6 +10,8 @@
     <link href="/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/css/home.css" rel="stylesheet" type="text/css" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/global.media.css" rel="stylesheet" type="text/css" />
+    <link href="/css/normalpage.media.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>

@@ -39,7 +39,7 @@
                             </asp:DropDownList>
                             <asp:TextBox ID="issuedate" TextMode="Date" runat="server" CssClass="inputs" />
                             <asp:TextBox ID="returndate" TextMode="Date" runat="server" CssClass="inputs" />
-                            <asp:Button id="issueBook" runat="server" CssClass="themeBtn ml" Text="Issue" onclick="issueBook_Click" />
+                            <asp:Button id="issueBook" runat="server" CssClass="themeBtn" Text="Issue" onclick="issueBook_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -59,7 +59,7 @@
                                 Enabled="False" >
                             </asp:DropDownList>
                             <asp:TextBox ID="extendedDate" TextMode="Date" runat="server" Enabled="false" CssClass="inputs" />
-                            <asp:Button id="renewBook" runat="server" CssClass="themeBtn ml" Text="Renew" 
+                            <asp:Button id="renewBook" runat="server" CssClass="themeBtn" Text="Renew" 
                                 Enabled="False" onclick="renewBook_Click" />
                         </ContentTemplate>
                     </asp:UpdatePanel>
